@@ -4,6 +4,16 @@
   padding: 100px 100px;
 }
 
+.display-3 {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 0.2;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
 .ButtonPrimary {
   border-radius: 6px;
   background-color: rgb(43, 80, 245);
