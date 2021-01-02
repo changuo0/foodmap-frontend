@@ -4,8 +4,10 @@ import './App.css';
 class App extends Component{
   render() {
     return(
-      <div className="App">
-        <h1>FoodMap</h1>
+      <div className="Container">
+        <h1 className="display3">Find Food</h1>
+        <p>Take this survey to find food near you</p>
+        <button className="ButtonPrimary" On>Take Survey »</button>
       </div>
 
     );
@@ -13,7 +15,5 @@ class App extends Component{
   }
 
 }
-
-
 
 export default App;
