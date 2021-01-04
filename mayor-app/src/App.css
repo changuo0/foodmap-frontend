@@ -1,13 +1,13 @@
 .Container {
   text-align: center;
-  background-color: lightgray;
+  background-color: #e9ecef;
   padding: 100px 100px;
 }
 
 .display-3 {
   font-size: 4.5rem;
   font-weight: 300;
-  line-height: 0.2;
+  line-height: 0.9;
 }
 
 p {
@@ -26,5 +26,41 @@ p {
 }
 .ButtonPrimary:hover{
   background-color: rgb(49, 49, 179);
+}
+
+.NavBar {
+  background-color: #343a40;
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  font-size: 1.25rem;
+  line-height: 2.5rem;
+  white-space: nowrap;
+  
+}
+
+.NavBarLink {
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+  color: white;
+  text-decoration: none;
+  float: left;
+  padding-left: 0.5rem;
+}
+
+.NavBar-Expanded{
+  float: right;
+  padding-right: 0.5rem;
 }
 
