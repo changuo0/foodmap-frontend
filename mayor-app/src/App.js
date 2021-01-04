@@ -1,5 +1,8 @@
 import { Component } from 'react';
 import './App.css';
+import wic from './images/wic.png';
+import snap from './images/snap.jpg';
+import nutrition from './images/nutrition.png';
 
 class App extends Component{
     openUrl = (url) =>{
@@ -22,17 +25,27 @@ class App extends Component{
         <button className="ButtonPrimary" On>Take Survey »</button>
 
           {/* Assistance Programs section */}
-        <div className = "Container">
-            <h1 className = "SubDisplay">
-                Assistance Programs
-            </h1>
+        <div className = "subDisplay">
+            Assistance Programs
+            <h2 className = "col-container">
+                <div className = "col">
+                    SNAP
+                    <img src={snap} />
+                    <button className="ButtonPrimary" On onClick={() => this.openUrl("https://faonlineapp.dhs.tn.gov/")}>Apply Here »</button>
+                </div>
 
-            {/*maybe need to make url variables */}
-            <button className="ButtonPrimary" On onClick={() => this.openUrl("https://faonlineapp.dhs.tn.gov/")}>Apply Here »</button>
+                <h3 className= "col">
+                    WIC
+                    <img src={wic}/>
+                    <button className="ButtonPrimary" On onClick={() => this.openUrl("https://www.tn.gov/health/health-program-areas/fhw/wic.html")}>Learn How to Apply »</button>
+                </h3>
 
-            <button className="ButtonPrimary" On onClick={() => this.openUrl("https://www.tn.gov/health/health-program-areas/fhw/wic.html")}>Learn How to Apply »</button>
-
-            <button className="ButtonPrimary" On>Learn More »</button>
+                <h3 className = "col">
+                    Nutrition Info
+                    <img src={nutrition}/>
+                    <button className="ButtonPrimary" On>Learn More »</button>
+                </h3>
+            </h2>
 
         </div>
 

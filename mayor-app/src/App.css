@@ -10,9 +10,28 @@
   line-height: 0.9;
 }
 
-.SubDisplay{
+.subDisplay{
   font-size: 3.5rem;
   font-weight: 300;
+  align-content: center;
+  text-align: center;
+}
+
+.col{
+  font-size: 1.0rem;
+  display: table-cell;
+}
+
+.col-container {
+  display: table;
+  column-gap: 50px;
+}
+
+img{
+  width: 340px;
+  height: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 p {
