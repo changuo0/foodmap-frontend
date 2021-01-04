@@ -10,6 +10,11 @@
   line-height: 0.9;
 }
 
+.SubDisplay{
+  font-size: 3.5rem;
+  font-weight: 300;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 1rem;
