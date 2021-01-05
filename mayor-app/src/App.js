@@ -15,7 +15,12 @@ class App extends Component{
         <nav className="NavBar">
             <a className="NavBarLink" href={"INSERT LINK LATER"}>Nashville Food</a>
             <div className="NavBar-Expanded">
-              <input type="text"/>
+              <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
+              <a className="NavBarItem-Dropdown" href={"INSERT LINK LATER"}>Get Help</a>
+              <a className="NavBarItem-Dropdown" href={"INSERT LINK LATER"}>Get Involved</a>
+              <button className="SearchBarButton">Search</button>
+              <input className="SearchBar" type="text" placeholder="Search"/>
+             
             </div>
         </nav>
 
