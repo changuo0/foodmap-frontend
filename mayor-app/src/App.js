@@ -11,7 +11,9 @@ class App extends Component{
 
   render() {
     return(
-      <div className="Container">
+      <div>
+
+         {/*Navbar*/}
         <nav className="NavBar">
             <a className="NavBarLink" href={"INSERT LINK LATER"}>Nashville Food</a>
             <div className="NavBar-Expanded">
@@ -20,15 +22,37 @@ class App extends Component{
               <a className="NavBarItem-Dropdown" href={"INSERT LINK LATER"}>Get Involved</a>
               <button className="SearchBarButton">Search</button>
               <input className="SearchBar" type="text" placeholder="Search"/>
-             
             </div>
         </nav>
 
           {/*First Main Section  */}
-        <h1 className="display-3">Find Food</h1>
-        <p>Take this survey to find food near you</p>
-        <button className="ButtonPrimary" On>Take Survey »</button>
+        <div className="Container">
+          <h1 className="display-3">Find Food</h1>
+          <p>Take this survey to find food near you</p>
+          <button className="ButtonPrimary" On>Take Survey »</button>
+        </div>
 
+          {/*Second Main Section */}
+        <div className = "col-container-2">
+          <div className="row">
+            <div className = "col-2">
+              <h2>Find Food</h2>
+              <p>An alternative placement for the find food survey</p>
+              <button className="ButtonSecondary" On onClick={() => this.openUrl("INSERT LINK")}>Take Survey »</button>
+            </div>
+            <div className = "col-2">
+              <h2>Assistance Programs</h2>
+              <p>Getting help applying for assistance programs</p>
+              <button className="ButtonSecondary" On onClick={() => this.openUrl("INSERT LINK")}>Get Help »</button>
+           </div>
+            <div className = "col-2">
+              <h2>Contribute to Your Community</h2>
+             <p>There are many ways to help our neighbors in need. Whether you're an organization or an individual, you can make a difference.</p>
+             <button className="ButtonSecondary" On onClick={() => this.openUrl("INSERT LINK")}>Get Involved »</button>
+            </div>
+          </div>
+        </div>
+        
           {/* Assistance Programs section */}
         <div className = "subDisplay">
             Assistance Programs
@@ -54,6 +78,7 @@ class App extends Component{
 
         </div>
 
+      
       </div>
 
 
