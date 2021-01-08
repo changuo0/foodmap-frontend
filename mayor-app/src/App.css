@@ -15,20 +15,13 @@
   font-weight: 300;
   align-content: center;
   text-align: center;
-}
-
-.col{
-  font-size: 1.0rem;
-  display: table-cell;
-}
-
-.col-container {
-  display: table;
-  column-gap: 50px;
+  background-color: #e9ecef;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 img{
-  width: 340px;
+  width: 350px;
   height: 200px;
   padding-left: 10px;
   padding-right: 10px;
@@ -144,6 +137,7 @@ p {
   padding-left: 15px;
   margin-right: 60px;
   margin-left: 60px;
+  padding-bottom: 30px;
 }
 
 .ButtonSecondary {
@@ -186,6 +180,18 @@ h2 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 2rem
+}
+
+h3 {
+  font-size: 1.0rem;
+  display: table-cell;
+}
+
+h4 {
+  font-size: 1.0rem;
+  font-weight: 300;
+  text-decoration: underline;
+  margin:auto;
 }
 
 @media (min-width: 768px) {

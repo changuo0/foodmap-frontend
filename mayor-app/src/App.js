@@ -52,24 +52,40 @@ class App extends Component{
             </div>
           </div>
         </div>
+
+          {/*Third Main section*/}
+          <div className = "subDisplay">
+              Nashville Food Pantry Calendar
+              <div className = "row">
+                  <h4>Monday</h4>
+                  <h4>Tuesday</h4>
+                  <h4>Wednesday</h4>
+                  <h4>Thursday</h4>
+                  <h4>Friday</h4>
+                  <h4>Saturday</h4>
+                  <h4>Sunday</h4>
+              </div>
+              <h2>IMPORT CALENDAR</h2>
+              <button className="ButtonPrimary" On onClick={() => this.openUrl("INSERT LINK")}>Get Calendar »</button>
+          </div>
         
           {/* Assistance Programs section */}
         <div className = "subDisplay">
             Assistance Programs
-            <h2 className = "col-container">
-                <div className = "col">
+            <h2 className = "col-container-2">
+                <h3>
                     SNAP
                     <img src={snap} />
                     <button className="ButtonPrimary" On onClick={() => this.openUrl("https://faonlineapp.dhs.tn.gov/")}>Apply Here »</button>
-                </div>
+                </h3>
 
-                <h3 className= "col">
+                <h3>
                     WIC
                     <img src={wic}/>
                     <button className="ButtonPrimary" On onClick={() => this.openUrl("https://www.tn.gov/health/health-program-areas/fhw/wic.html")}>Learn How to Apply »</button>
                 </h3>
 
-                <h3 className = "col">
+                <h3>
                     Nutrition Info
                     <img src={nutrition}/>
                     <button className="ButtonPrimary" On>Learn More »</button>
