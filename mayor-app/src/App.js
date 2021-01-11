@@ -3,6 +3,9 @@ import './App.css';
 import wic from './images/wic.png';
 import snap from './images/snap.jpg';
 import nutrition from './images/nutrition.png';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component{
     openUrl = (url) =>{
@@ -12,13 +15,22 @@ class App extends Component{
   render() {
     return(
       <div>
-
+        
          {/*Navbar*/}
         <nav className="NavBar">
             <a className="NavBarLink" href={"INSERT LINK LATER"}>Nashville Food</a>
             <div className="NavBar-Expanded">
               <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
-              <a className="NavBarItem-Dropdown" href={"INSERT LINK LATER"}>Get Help</a>
+              <Dropdown >
+                <Dropdown.Toggle variant="NavBarItem-Dropdown">
+                  Get Help
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
               <a className="NavBarItem-Dropdown" href={"INSERT LINK LATER"}>Get Involved</a>
               <button className="SearchBarButton">Search</button>
               <input className="SearchBar" type="text" placeholder="Search"/>

@@ -1,13 +1,18 @@
 .Container {
+  margin-top: 50px;
   text-align: center;
   background-color: #e9ecef;
-  padding: 100px 100px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+
 }
 
 .display-3 {
   font-size: 4.5rem;
   font-weight: 300;
-  line-height: 0.9;
+  line-height: 0;
+  margin-top: 0rem;
+
 }
 
 .subDisplay{
@@ -95,6 +100,7 @@ p {
   font-size: 16px;
   margin: 0rem 1.5rem 0rem 1.5rem;
   text-decoration: none;
+  background-color: tomato;
   float: left;
 }
 
@@ -158,6 +164,11 @@ p {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
+  cursor: pointer;
+}
+
+.ButtonSecondary:hover {
+  background-color:#495057;
 }
 
 .col-2 {
@@ -204,4 +215,11 @@ h4 {
 
 *, ::after, ::before {
   box-sizing: border-box;
+}
+
+.Dropdown-item {
+  background-color: white;
+  display: inline-block;
+  
+  
 }
