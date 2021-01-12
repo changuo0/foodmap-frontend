@@ -1,10 +1,8 @@
 import React from 'react';
-import Dropdown from "react-bootstrap/Dropdown";
 import {Link} from "react-router-dom";
 import snap from "../images/snap.jpg";
 import wic from "../images/wic.png";
 import nutrition from "../images/nutrition.png";
-import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const Home = () => {
     function openUrl(url){
@@ -12,27 +10,6 @@ const Home = () => {
     }
     return (
         <div>
-            {/*Navbar*/}
-            <nav className="NavBar">
-                <a className="NavBarLink" href={"INSERT LINK LATER"}>Nashville Food</a>
-                <div className="NavBar-Expanded">
-                    <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
-                    <Dropdown >
-                        <Dropdown.Toggle variant="NavBarItem-Dropdown">
-                            Get Help
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <a className="NavBarItem-Dropdown" href={"INSERT LINK LATER"}>Get Involved</a>
-                    <button className="SearchBarButton">Search</button>
-                    <input className="SearchBar" type="text" placeholder="Search"/>
-                </div>
-            </nav>
-
             {/*First Main Section  */}
             <div className="Container">
                 <h1 className="display-3">Find Food</h1>

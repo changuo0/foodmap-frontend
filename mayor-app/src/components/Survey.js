@@ -5,6 +5,13 @@ const Survey = () => {
         <div>
             <h1>Survey</h1>
             <p>content</p>
+            <h1>Survey</h1>
+            <h1>Survey</h1>
+            <h1>Survey</h1>
+            <h1>Survey</h1>
+            <h1>Survey</h1>
+            <h1>Survey</h1>
+            <h1>Survey</h1>
         </div>
     );
 }
