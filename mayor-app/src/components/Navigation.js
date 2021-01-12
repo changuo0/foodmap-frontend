@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../App.css';
 import { Link } from 'react-router-dom';
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -7,7 +7,8 @@ const Navigation = () => {
     return (
         <div>
             <nav className="NavBar">
-                <Link to="/">Nashville Food</Link>
+                {/*Links to homepage when on another page - can play around with styling*/}
+                <Link to="/" className = "btn">Nashville Food</Link>
                 <div className="NavBar-Expanded">
                     <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
                     <Dropdown >

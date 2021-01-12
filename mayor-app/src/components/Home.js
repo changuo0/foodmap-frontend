@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import snap from "../images/snap.jpg";
 import wic from "../images/wic.png";
 import nutrition from "../images/nutrition.png";
+import '../App.css';
 
 const Home = () => {
     function openUrl(url){
