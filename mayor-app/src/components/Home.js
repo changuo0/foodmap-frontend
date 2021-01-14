@@ -24,10 +24,7 @@ const Home = () => {
                     <div className = "col-2">
                         <h2>Find Food</h2>
                         <p>An alternative placement for the find food survey</p>
-                        <li>
-                            <Link to="/Survey">Survey</Link>
-                        </li>
-                        <button className="ButtonSecondary" On onClick={() => openUrl("INSERT LINK")}>Take Survey »</button>
+                        <button className="ButtonSecondary" On onClick={() => openUrl("/Survey")}>Take Survey »</button>
                     </div>
                     <div className = "col-2">
                         <h2>Assistance Programs</h2>

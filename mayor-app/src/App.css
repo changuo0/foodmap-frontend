@@ -1,5 +1,15 @@
+body {
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
 .Container {
-  margin-top: 50px;
   text-align: center;
   background-color: #e9ecef;
   padding-top: 100px;
@@ -8,11 +18,10 @@
 }
 
 .display-3 {
-  font-size: 4.5rem;
-  font-weight: 300;
-  line-height: 0;
-  margin-top: 0rem;
-
+  font-size: 6.5rem;
+  font-weight: 50;
+  font-stretch: expanded;
+  margin-top: 1rem; 
 }
 
 .subDisplay{
@@ -32,10 +41,6 @@ img{
   padding-right: 10px;
 }
 
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
 .ButtonPrimary {
   border-radius: 6px;
   background-color: rgb(38, 129, 240);
@@ -159,24 +164,24 @@ p {
 }
 
 .ButtonSecondary {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: .25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-  cursor: pointer;
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
 }
 
 .ButtonSecondary:hover {

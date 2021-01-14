@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const Navigation = () => {
     return (
@@ -13,16 +14,17 @@ const Navigation = () => {
                 <div className="NavBar-Expanded">
                     <ul className="NavBar-Nav mr-auto" >
                         <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="NavBarItem-Dropdown" drop={"down"}>
-                                Get Help
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                        <DropdownButton
+                            key={"down"}
+                            variant="NavBarItem-Dropdown" 
+                            drop={"down"}
+                            title={"Get Help"}
+                            >
+                            <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                            <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                            <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                        </DropdownButton>
+                        
                         <Dropdown >
                             <Dropdown.Toggle variant="NavBarItem-Dropdown">
                                 Get Involved
