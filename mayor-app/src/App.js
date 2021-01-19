@@ -7,11 +7,31 @@ import Home from './components/Home';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 class App extends Component{
+
+  //Added a constructor and an event listener to check for screen size so that navBar is properly adjusted
+  constructor(props) {
+    super(props);
+    this.state = { windowWidth: window.innerWidth };
+  }
+
+  handleResize = (e) => {
+    this.setState({ windowWidth: window.innerWidth });
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
   render() {
+    const {windowWidth} = this.state;
     return(
         <Router>
             <div>
-                <Navigation/>
+                <Navigation windowWidth={windowWidth}/>
                 <Switch>
                     <Route path = "/" component = {Home} exact/>
                     <Route path = "/Survey" component = {Survey}/>
@@ -22,6 +42,8 @@ class App extends Component{
     );
 
   }
+
+
 
 }
 

@@ -50,6 +50,7 @@ img{
   border-width: 0px;
   font-size: 20px;
   cursor: pointer;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .ButtonPrimary:hover{
   background-color: rgb(25, 116, 227);
@@ -123,6 +124,12 @@ img{
   float: inline-start;
 }
 
+
+.Dropdown-Item {
+  display: flex;
+  color:black;
+}
+
 .SearchBar {
   padding: .375rem .75rem;
   font-size: 1rem;
@@ -187,6 +194,7 @@ img{
 .ButtonSecondary:hover {
   background-color:#495057;
 }
+
 
 .col-2 {
   position: relative;
