@@ -12,7 +12,7 @@ const Navigation = (props) => {
             <nav className="NavBar">
                 {/*Links to homepage when on another page - can play around with styling*/}
                 {/*<Link to="/" className = "NavBarLink">Nashville Food</Link>*/}
-                <a className="NavBarLink" href={"/"}>width is {windowWidth}</a>
+                <a className="NavBarLink" href={"/"}>Nashville Food</a>
                 <NavBarType width = {windowWidth} />
             </nav>
         </div>
@@ -57,7 +57,7 @@ function NavBarExpanded(){
 function NavBarCondensed(){
     return (
         <div className="NavBar-Condensed">
-            <img src={menuIcon} />
+            <img src={menuIcon} className="MenuIcon"/>
         </div>
     );
 }

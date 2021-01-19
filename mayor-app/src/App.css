@@ -230,6 +230,14 @@ h4 {
   margin:auto;
 }
 
+.MenuIcon {
+  width: 50px;
+  height: 30px;
+  float: right;
+}
+
+
+
 @media (min-width: 768px) {
   .col-2 {
       -ms-flex: 0 0 33.333333%;
