@@ -17,6 +17,20 @@ body {
 
 }
 
+.survey-form {
+  background-color: #e9ecef;
+  padding: 100px 20px 100px 20px;
+}
+
+.long-text-input{
+  type:"text";
+  width:100%;
+}
+
+input{
+  height: 30px;
+}
+
 .display-3 {
   font-size: 6.5rem;
   font-weight: 50;
@@ -209,6 +223,10 @@ img{
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+}
+
+.row-2{
+  display: flex;
 }
 
 h2 {
