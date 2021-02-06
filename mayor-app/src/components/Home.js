@@ -15,7 +15,7 @@ const Home = () => {
             <div className="Container">
                 <h1 className="display-3">Find Food</h1>
                 <p>Take this survey to find food near you</p>
-                <button className="ButtonPrimary" On>Take Survey »</button>
+                <button className="ButtonPrimary" On onClick={() => openUrl("/Survey")}>Take Survey »</button>
             </div>
 
             {/*Second Main Section */}
