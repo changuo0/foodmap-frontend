@@ -9,7 +9,10 @@ class Survey extends React.Component {
             streetAddress2: "",
             city: "",
             state:"",
-            zip:""
+            zip:"",
+            nonperishables: false,
+            freshfood: false,
+            boxedmeals: false
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -43,6 +46,7 @@ class Survey extends React.Component {
                 <h5>Address Line 2:</h5>
                 <input className="long-text-input"
                     name="streetAddress2"
+                    placeholder="Apartment, Studio, or Floor"
                     value={this.state.streetAddress2}
                     onChange={this.handleInputChange} />
 
@@ -116,7 +120,31 @@ class Survey extends React.Component {
                     value={this.state.zip}
                     onChange={this.handleInputChange} />
 
-                <input type="submit"/>
+                <h5>I am looking for...</h5>
+                <input
+                    name="nonperishables"
+                    type="checkbox"
+                    value={this.state.nonperishables}
+                    onChange={this.handleInputChange} />
+                <label>Non-Perishables</label>
+                <br />
+                <input
+                    name="freshfood"
+                    type="checkbox"
+                    value={this.state.freshfood}
+                    onChange={this.handleInputChange} />
+                <label> Fresh Food </label>
+                <br />
+                <input
+                    name="boxedmeals"
+                    type="checkbox"
+                    value={this.state.boxedmeals}
+                    onChange={this.handleInputChange} />
+                <label> Boxed Meals </label>
+                <br />
+
+                <input className="ButtonSecondary" type="submit"/>
+
             </form>
         </div>
         );
