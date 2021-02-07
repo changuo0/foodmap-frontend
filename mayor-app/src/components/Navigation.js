@@ -57,7 +57,35 @@ function NavBarExpanded(){
 function NavBarCondensed(){
     return (
         <div className="NavBar-Condensed">
-            <img src={menuIcon} className="MenuIcon"/>
+            <ul className="NavBar-Nav mr-auto" >
+                <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
+                <DropdownButton
+                    key={"down"}
+                    variant="NavBarItem-Dropdown" 
+                    drop={"down"}
+                    title={"Get Help ▼"}
+                    
+                    >
+                    <Dropdown.Item className="Dropdown-Item" eventKey="1">Food Finder Survey</Dropdown.Item>
+                    <Dropdown.Item className="Dropdown-Item" eventKey="2">Resource Map</Dropdown.Item>
+                    <Dropdown.Item className="Dropdown-Item" eventKey="3">Assistance Programs</Dropdown.Item>
+                </DropdownButton>
+                <br />
+                <DropdownButton
+                    key={"down"}
+                    variant="NavBarItem-Dropdown" 
+                    drop={"down"}
+                    title={"Get Involved ▼"}
+                    >
+                    <Dropdown.Item className="Dropdown-Item" eventKey="1">Submit A Resource</Dropdown.Item>
+                    <Dropdown.Item className="Dropdown-Item" eventKey="2">Donate Space</Dropdown.Item>
+                    <Dropdown.Item className="Dropdown-Item" eventKey="3">Volunteer</Dropdown.Item>
+                </DropdownButton>
+                
+            </ul>
+            <input className="SearchBar" type="text" placeholder="Search"/>
+            <button className="SearchBarButton">Search</button>
+                   
         </div>
     );
 }

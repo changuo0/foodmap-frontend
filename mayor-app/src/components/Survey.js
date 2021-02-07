@@ -40,6 +40,7 @@ class Survey extends React.Component {
                 <h5>Address:</h5>
                 <input className="long-text-input"
                     name="streetAddress"
+                    placeholder="1234 Main St"
                     checked={this.state.streetAddress}
                     onChange={this.handleInputChange} />
 
@@ -53,7 +54,6 @@ class Survey extends React.Component {
                 <h5>City:</h5>
                 <input
                     name="city"
-                    size="100"
                     value={this.state.city}
                     onChange={this.handleInputChange} />
 

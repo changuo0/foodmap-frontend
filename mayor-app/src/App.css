@@ -126,8 +126,7 @@ img{
   font-size: 16px;
   margin: 0.4rem 1.5rem 0rem 1.5rem;
   text-decoration: none;
-  float: inline-start;
-  cursor: pointer;
+  display: block;
 }
 
 .btn-NavBarItem-Dropdown {
@@ -135,14 +134,22 @@ img{
   background-color: transparent;
   font-size: 16px;
   margin: 0rem 0.5rem 0rem 0.5rem;
-  text-decoration: none;
-  float: inline-start;
+  text-decoration: block;
 }
 
+
+.btn-NavBarItem-Dropdown-Invisible {
+  width: 100px;
+}
 
 .Dropdown-Item {
   display: flex;
   color:black;
+}
+
+.NavBar-Condensed-Dropdown-Item {
+  text-decoration-color: #343a40;
+  
 }
 
 .SearchBar {
@@ -258,7 +265,8 @@ h4 {
 .MenuIcon {
   width: 50px;
   height: 30px;
-  float: right;
+  float: left;
+  background-color: #343a40;
 }
 
 
