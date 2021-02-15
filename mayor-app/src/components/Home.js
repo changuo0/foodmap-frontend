@@ -38,7 +38,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
+            
             {/*Third Main section*/}
             <div className = "subDisplay">
                 Nashville Food Pantry Calendar
@@ -58,26 +58,23 @@ const Home = () => {
             {/* Assistance Programs section */}
             <div className = "subDisplay">
                 Assistance Programs
-                <h2 className = "col-container-2">
-                    <h3>
-                        SNAP
-                        <img src={snap} />
+                <div className="row">
+                    <div className = "col-2">
+                        <h2>SNAP</h2>
+                        <img classname="assistanceimg" src={snap} />
                         <button className="ButtonPrimary" On onClick={() => openUrl("https://faonlineapp.dhs.tn.gov/")}>Apply Here »</button>
-                    </h3>
-
-                    <h3>
-                        WIC
-                        <img src={wic}/>
+                    </div>
+                    <div className = "col-2">
+                        <h2>WIC</h2>
+                        <img classname="assistanceimg" src={wic}/>
                         <button className="ButtonPrimary" On onClick={() => openUrl("https://www.tn.gov/health/health-program-areas/fhw/wic.html")}>Learn How to Apply »</button>
-                    </h3>
-
-                    <h3>
-                        Nutrition Info
-                        <img src={nutrition}/>
-                        <button className="ButtonPrimary" On>Learn More »</button>
-                    </h3>
-                </h2>
-
+                    </div>
+                    <div className = "col-2">
+                        <h2>Nutrition Info</h2>
+                        <img classname="assistanceimg" src={nutrition}/>
+                        <button className="ButtonPrimary" On onClick={() => openUrl("/")}>Learn More »</button>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -11,9 +11,10 @@ body {
 
 .Container {
   text-align: center;
-  background-color: #e9ecef;
+  background-color: #e9ecef67;
   padding-top: 100px;
   padding-bottom: 50px;
+  width:100%
 
 }
 
@@ -50,15 +51,17 @@ input{
 }
 
 img{
-  width: 350px;
-  height: 200px;
-  padding-left: 10px;
-  padding-right: 10px;
+  width: 300px;
+  height: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .ButtonPrimary {
   border-radius: 6px;
   background-color: rgb(38, 129, 240);
+  margin-right: 100px;
+  margin-left: 0px;
   color: aliceblue;
   width: 160px;
   height: 50px;
@@ -185,11 +188,7 @@ img{
 }
 
 .col-container-2 {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: 60px;
-  margin-left: 60px;
-  padding-bottom: 30px;
+  display: block;
 }
 
 .ButtonSecondary {
@@ -219,18 +218,22 @@ img{
 
 
 .col-2 {
-  position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  width: auto;
+}
+
+.assistanceimg {
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 .row{
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
 }
 
 .row-2{
