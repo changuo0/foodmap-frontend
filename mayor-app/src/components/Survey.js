@@ -30,13 +30,13 @@ class Survey extends React.Component {
 
     mySubmitHandler = (event) => {
         event.preventDefault();
-        alert("You are submitting");
+        window.open("/Results")
     }
 
     render() {
         return (
             <div className="survey-form">
-            <form onSubmit={this.mySubmitHandler}>
+                <form onSubmit={this.mySubmitHandler}>
                 <h5>Address:</h5>
                 <input className="long-text-input"
                     name="streetAddress"
@@ -144,9 +144,8 @@ class Survey extends React.Component {
                 <br />
 
                 <input className="ButtonSecondary" type="submit"/>
-
-            </form>
-        </div>
+                </form>
+            </div>
         );
     }
 }
