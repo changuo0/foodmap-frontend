@@ -17,16 +17,16 @@ function makeRequest(dbOrCal,params,callback) {
 class Results extends React.Component {
     constructor() {
       super()
-      this.state = { xmlReturn: {} }
-      makeRequest("db",{"zip":"37206"}, (x) => console.log(x)) //this.setState({xmlReturn:x}))
+      this.state = { xmlReturn: ["no data yet..."] }
+      makeRequest("db",{"zip":"37206"}, (x) => this.setState({xmlReturn:x}))
     }
     render() {
         return (
             <div>
-		<p>{JSON.stringify(this.state.xmlReturn)}</p>
                 {/*First Main Section  */}
                 <div className="Container">
                     <h1 className="display-3">Results</h1>
+		    <p>{JSON.stringify(this.state.xmlReturn)}</p>
                     <Map
                         google={this.props.google}
                         zoom={15}
