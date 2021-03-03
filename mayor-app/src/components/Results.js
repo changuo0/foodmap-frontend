@@ -15,7 +15,10 @@ function makeRequest(dbOrCal,params,callback) {
 }
 
 class Results extends React.Component {
-  makeRequest("db",{"zip":"37206"}, (x) => alert("db req returned "+JSON.stringify(x)))
+    constructor() {
+      super()
+      makeRequest("db",{"zip":"37206"}, (x) => alert("db req returned "+JSON.stringify(x)))
+    }
     render() {
         return (
             <div>
