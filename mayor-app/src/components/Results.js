@@ -2,7 +2,20 @@ import React from 'react';
 import '../App.css';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
+function makeRequest(dbOrCal,params,callback) {
+  const req = new XMLHttpRequest()
+  req.addEventListener("load", () => {
+    callback(JSON.parse(req.responseText))
+  })
+  let url = "/" + dbOrCal + "/"
+  for (var k in params)
+    url += k + "=" + params[k] + "/"
+  req.open("GET", url)
+  req.send()
+}
+
 class Results extends React.Component {
+  makeRequest("db",{"zip":"37206"}, (x) => alert("db req returned "+JSON.stringify(x)))
     render() {
         return (
             <div>
