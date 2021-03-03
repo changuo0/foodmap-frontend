@@ -17,11 +17,13 @@ function makeRequest(dbOrCal,params,callback) {
 class Results extends React.Component {
     constructor() {
       super()
-      makeRequest("db",{"zip":"37206"}, (x) => alert("db req returned "+JSON.stringify(x)))
+      this.state = { xmlReturn: {} }
+      makeRequest("db",{"zip":"37206"}, (x) => console.log(x)) //this.setState({xmlReturn:x}))
     }
     render() {
         return (
             <div>
+		<p>{JSON.stringify(this.state.xmlReturn)}</p>
                 {/*First Main Section  */}
                 <div className="Container">
                     <h1 className="display-3">Results</h1>
