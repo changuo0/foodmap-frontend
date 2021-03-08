@@ -36,6 +36,7 @@ class Survey extends React.Component {
         }
     }
 
+    //will need to look into how this is handled for non text input types
     handleChange = event => {
         const {name, value} = event.target
         this.setState({
@@ -64,9 +65,6 @@ class Survey extends React.Component {
         })
     }
 
-    /*
-    * the functions for our button
-    */
     previousButton() {
         let currentStep = this.state.currentStep;
         if(currentStep !==1){
@@ -100,9 +98,6 @@ class Survey extends React.Component {
             <React.Fragment>
                 <h1 className='subDisplay'>Find Food Survey</h1>
                 <form onSubmit={this.handleSubmit}>
-                    {/*
-        render the form steps and pass required props in
-      */}
                     <Step1
                         currentStep={this.state.currentStep}
                         handleChange={this.handleChange}
