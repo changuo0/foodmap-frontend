@@ -15,8 +15,8 @@ body {
   padding-top: 100px;
   padding-bottom: 50px;
   width:100%
-
 }
+
 
 .survey-form {
   background-color: #e9ecef;
@@ -46,6 +46,16 @@ input{
   align-content: center;
   text-align: center;
   background-color: #e9ecef;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.bottomDisplay{
+  font-size: 1.5rem;
+  font-weight: 300;
+  align-content: center;
+  text-align: center;
+  background-color: #343a40;
   padding-top: 30px;
   padding-bottom: 30px;
 }

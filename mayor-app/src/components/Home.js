@@ -76,6 +76,15 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+                {/* Bottom Display */}
+            <div className = "bottomDisplay">
+                <h2 style={{color: "white"}}> Donator? Sign in Below </h2>
+                <button className="ButtonSecondary">Sign In</button>
+                
+            </div>
+
+            
         </div>
     );
 }
