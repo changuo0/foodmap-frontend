@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../Styling/App.css';
 
 class Survey extends React.Component {
     constructor(props) {

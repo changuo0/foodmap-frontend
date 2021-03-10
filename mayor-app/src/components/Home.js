@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import snap from "../images/snap.jpg";
 import wic from "../images/wic.png";
 import nutrition from "../images/nutrition.png";
-import '../App.css';
+import '../Styling/App.css';
 
 const Home = () => {
     function openUrl(url){
@@ -80,7 +80,7 @@ const Home = () => {
                 {/* Bottom Display */}
             <div className = "bottomDisplay">
                 <h2 style={{color: "white"}}> Donator? Sign in Below </h2>
-                <button className="ButtonSecondary">Sign In</button>
+                <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>Sign In</button>
                 
             </div>
 

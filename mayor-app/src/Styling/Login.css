@@ -1,0 +1,17 @@
+.Login {
+    padding: 60px 0;
+    
+  }
+  
+.Login form {
+    margin: 0 auto;
+    max-width: 320px;
+}
+
+
+.SignUp{
+    margin-top: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
