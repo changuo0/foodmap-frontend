@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Styling/App.css';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import Geocode from "react-geocode"
 
 function makeRequest(dbOrCal,params,callback) {
   const req = new XMLHttpRequest()
@@ -17,8 +18,10 @@ function makeRequest(dbOrCal,params,callback) {
 class Results extends React.Component {
     constructor() {
       super()
+      this.setUpGeoCode();
       this.state = { xmlReturn: ["no data yet..."] }
       makeRequest("db",{"zip":"37206"}, (x) => this.setState({xmlReturn:x}))
+      
     }
     render() {
         return (
@@ -31,6 +34,7 @@ class Results extends React.Component {
                         google={this.props.google}
                         zoom={15}
                         style={mapStyles}
+                        
                         initialCenter={{ lat: 36.14417, lng: -86.80971}}
                     >  
                     <Marker position={{ lat: 36.14417, lng: -86.80971}} />
@@ -39,6 +43,12 @@ class Results extends React.Component {
             </div>
         );
     }
+
+
+  setUpGeoCode(){
+    Geocode.setApiKey("AIzaSyAZNY02jemZ0JuL9QauPxeggJB7EDShTo8");
+    Geocode.setLanguage("en");
+  }
 }
 const mapStyles = {
     width: '100%',

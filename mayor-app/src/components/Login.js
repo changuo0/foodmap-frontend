@@ -16,6 +16,10 @@ const Login = () => {
       event.preventDefault();
     }
 
+    function openUrl(url){
+        window.open(url);
+    }
+
     return (
         <div className="Login">
             <Form onSubmit={handleSubmit}>
@@ -39,7 +43,7 @@ const Login = () => {
                 <Button block size="lg" type="submit" disabled={!validateForm()}>
                     Login
                 </Button>
-                <p className="SignUp" >Don't have an account? Register here.</p>
+                <p className="SignUp" On onClick={() => openUrl("/SignUp")}>Don't have an account? Register here.</p>
              </Form>
           
 

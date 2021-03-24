@@ -6,6 +6,7 @@ import Results from './components/Results';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 class App extends Component{
@@ -39,6 +40,7 @@ class App extends Component{
                     <Route path = "/Survey" component = {Survey}/>
                     <Route path = "/Results" component = {Results}/>
                     <Route path = "/Login" component = {Login}/>
+                    <Route path = "/SignUp" component = {SignUp}/>
                 </Switch>
             </div>
         </Router>
