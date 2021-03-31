@@ -15,12 +15,18 @@ function makeRequest(dbOrCal,params,callback) {
   req.send()
 }
 
+function makeDummyRequest(dbOrCal,params,callback) {
+  // dbOrCal and params do nothing lol
+  // calls the callback with sample data
+  callback([{"name":"510 Foundation","contact":"615-255-1289","notes":"","location":"510 Woodland St., Nashville, TN","zip":37206,"foodtype":"Soup Kitchen, Dinner","id":20},{"name":"Community Care Fellowship","contact":"615-227-1953","notes":"","location":"511 South 8th Street, Nashville, TN","zip":37206,"foodtype":"Soup Kitchen / Youth Program, Breakfast/Lunch","id":21},{"name":"Catholic Charities / Loaves & Fishes","contact":"615-256-7256","notes":"","location":"508 Main Street, Nashville, TN","zip":37206,"foodtype":"Soup Kitchen, Breakfast/Lunch","id":22}])
+}
+
 class Results extends React.Component {
     constructor() {
       super()
       this.setUpGeoCode();
       this.state = { xmlReturn: ["no data yet..."] }
-      makeRequest("db",{"zip":"37206"}, (x) => this.setState({xmlReturn:x}))
+      makeDummyRequest("db",{"zip":"37206"}, (x) => this.setState({xmlReturn:x}))
       
     }
     render() {
