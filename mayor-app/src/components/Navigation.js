@@ -1,12 +1,13 @@
 import React from 'react';
-import '../Styling/App.css';
+import '../Styling/NavBar.css';
 import { Link } from 'react-router-dom';
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import menuIcon from "../images/menuIcon.png";
+
 
 const Navigation = (props) => {
     const windowWidth = props.windowWidth;
+
     return (
         <div>
             <nav className="NavBar">
@@ -46,8 +47,11 @@ function NavBarExpanded(){
                     <Dropdown.Item className="Dropdown-Item" eventKey="2">Donate Space</Dropdown.Item>
                     <Dropdown.Item className="Dropdown-Item" eventKey="3">Volunteer</Dropdown.Item>
                 </DropdownButton>
+
+
                 
             </ul>
+            
             <input className="SearchBar" type="text" placeholder="Search"/>
             <button className="SearchBarButton">Search</button>
         </div>
