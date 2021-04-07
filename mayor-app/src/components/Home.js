@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from "react-router-dom";
 import snap from "../images/snap.jpg";
 import wic from "../images/wic.png";
@@ -13,8 +13,9 @@ const Home = () => {
     function openUrl(url){
         window.open(url);
     }
+    
     return (
-        <I18nProvider locale={LOCALES.FRENCH}>
+        <I18nProvider locale={LOCALES.ENGLISH}>
             <div>
            
                 {/*First Main Section  */}
@@ -42,26 +43,26 @@ const Home = () => {
                             <p className="FindFood">Please select your lnguage below</p>
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>English</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:en")}>English</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>French</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:fr")}>French</button>
                                 </div>
                             </div>    
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>Spanish</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:es")}>Spanish</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>Vietnamese</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:vi")}>Vietnamese</button>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>Mandarin</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:zh")}>Mandarin</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>German</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:de")}>German</button>
                                 </div>
                             </div>
                         </div>  

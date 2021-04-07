@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Styling/App.css';
+import { I18nProvider, LOCALES } from '../i18n';
+import translate from "../i18n/translate";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 class Survey extends React.Component {
+    
+
     constructor(props) {
         super(props)
         this.state = {
             currentStep: 1,
-            language: 'English',
+            language: "",
             householdProperties: {
                 olderThan60: false,
                 childrenUnder18: false,
@@ -72,7 +78,7 @@ class Survey extends React.Component {
                 <button
                     className="btn btn-secondary"
                     type="button" onClick={this._prev}>
-                    Previous
+                    {translate('Previous')}
                 </button>
             )
         }
@@ -86,7 +92,7 @@ class Survey extends React.Component {
                 <button
                     className="btn btn-primary float-right"
                     type="button" onClick={this._next}>
-                    Next
+                    {translate('Next')}
                 </button>
             )
         }
@@ -95,42 +101,46 @@ class Survey extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
-                <h1 className='subDisplay'>Find Food Survey</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <Step1
-                        currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
-                        language={this.state.language}
-                    />
-                    <Step2
-                        currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
-                        householdProperties={this.state.householdProperties}
-                    />
-                    <Step3
-                        currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
-                        desiredFoodType={this.state.desiredFoodType}
-                    />
-                    <Step4
-                        currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
-                        locationDetails={this.state.locationDetails}
-                    />
-                    <Step5
-                        currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
-                        weeklyAvailability={this.state.weeklyAvailability}
-                    />
-                    {this.previousButton()}
-                    {this.nextButton()}
+            <I18nProvider locale={this.state.language}>
+                <React.Fragment>
+                    <h1 className='subDisplay'>Find Food Survey</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <Step1
+                            currentStep={this.state.currentStep}
+                            handleChange={this.handleChange}
+                            language={this.state.language}
+                        />
+                        <Step2
+                            currentStep={this.state.currentStep}
+                            handleChange={this.handleChange}
+                            householdProperties={this.state.householdProperties}
+                        />
+                        <Step3
+                            currentStep={this.state.currentStep}
+                            handleChange={this.handleChange}
+                            desiredFoodType={this.state.desiredFoodType}
+                        />
+                        <Step4
+                            currentStep={this.state.currentStep}
+                            handleChange={this.handleChange}
+                            locationDetails={this.state.locationDetails}
+                        />
+                        <Step5
+                            currentStep={this.state.currentStep}
+                            handleChange={this.handleChange}
+                            weeklyAvailability={this.state.weeklyAvailability}
+                        />
+                        {this.previousButton()}
+                        {this.nextButton()}
 
-                </form>
-            </React.Fragment>
+                    </form>
+                </React.Fragment>
+            </I18nProvider>
         );
     }
 }
+
+
 
 function Step1(props) {
     if (props.currentStep !== 1) {
@@ -140,10 +150,10 @@ function Step1(props) {
         <div className="form-group">
             <label htmlFor="languages">Please select a language: </label>
             <select value = {props.language} onChange={props.handleChange}>
-                <option value="" selected="selected">English</option>
-                <option value="SP">Spanish</option>
-                <option value="GR">German</option>
-                <option value="AR">Arabic</option>
+                <option value={LOCALES.ENGLISH} >English</option>
+                <option value={LOCALES.SPANISH} selected="selected">Spanish</option>
+                <option value={LOCALES.GERMAN}>German</option>
+                <option value={LOCALES.FRENCH}>French</option>
             </select>
         </div>
     );
@@ -155,36 +165,36 @@ function Step2(props) {
     }
     return(
         <div className="form-group">
-            <h5>Check all that apply to you or your household</h5>
+            <h5>{translate("Check all that apply to you or your household")}</h5>
             <input
                 name="olderThan60"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label>60 years or older</label>
+            <label>{translate("60 years or older")}</label>
             <br />
             <input
                 name="childrenUnder18"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label>Children 18 or younger</label>
+            <label>{translate("Children 18 or younger")}</label>
             <br />
             <input
                 name="disability"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label>Disability that makes it difficult to leave the house </label>
+            <label>{translate("Disability that makes it difficult to leave the house")}</label>
             <br />
             <input
                 name="singleParent"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label>Single Parent</label>
+            <label>{translate("Single Parent")}</label>
             <br />
             <input
                 name="infantUnder2"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label>Infant 2 years or younger</label>
+            <label>{translate("Infant 2 years or younger")}</label>
             <br />
         </div>
     );
@@ -196,24 +206,24 @@ function Step3(props) {
     }
     return(
         <div className="form-group">
-            <h5>I am looking for...</h5>
+            <h5>{translate("I am looking for...")}</h5>
             <input
                 name="nonperishables"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label>Non-Perishables</label>
+            <label>{translate("Non-Perishables")}</label>
             <br />
             <input
                 name="freshfood"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label> Fresh Food </label>
+            <label>{translate("Fresh Food")}</label>
             <br />
             <input
                 name="prepackagedMeals"
                 type="checkbox"
                 onChange={props.handleChange} />
-            <label> Pre-Packaged Meals </label>
+            <label>{translate("Pre-Packaged Meals")}</label>
             <br />
         </div>
     );
@@ -225,7 +235,7 @@ function Step4(props) {
     }
     return(
         <div className="form-group">
-            <h5>Please enter your location details to help us search for the closest opportunities</h5>
+            <h5>{translate("Please enter your location details to help us search for the closest opportunities")}</h5>
             <h5>Zip:</h5>
             <input
                 name="zip"
@@ -233,36 +243,36 @@ function Step4(props) {
                 value={props.locationDetails.zipCode}
                 onChange={props.handleChange} />
 
-            <h5>I am looking for food within ... </h5>
+            <h5>{translate("I am looking for food within ...")} </h5>
             <input
                 name="oneMile"
                 type="radio"
                 onChange={props.handleChange} />
-            <label for="oneMile"> 1 mile </label>
+            <label for="oneMile">{translate("1 mile")}</label>
             <br />
             <input
                 name="threeMiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="threeMiles"> 3 miles </label>
+            <label htmlFor="threeMiles">{translate("3 miles")}</label>
             <br />
             <input
                 name="fiveMiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="fiveMiles"> 5 miles </label>
+            <label htmlFor="fiveMiles">{translate("5 miles")} </label>
             <br />
             <input
                 name="tenMiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="tenMiles"> 10 miles </label>
+            <label htmlFor="tenMiles">{translate("10 miles")} </label>
             <br />
             <input
                 name="twentymiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="twentymiles"> 20 miles </label>
+            <label htmlFor="twentymiles">{translate("20 miles")} </label>
         </div>
     );
 }
@@ -273,29 +283,29 @@ function Step5(props) {
     }
     return(
         <React.Fragment>
-            <h5>I am available on these days for pickup: </h5>
+            <h5>{translate("I am available on these days for pickup:")} </h5>
             <input name="sunday" type="checkbox" onChange={props.handleChange} />
-            <label> Sunday </label>
+            <label>{translate("Sunday")}</label>
             <br />
             <input name="monday" type="checkbox" onChange={props.handleChange} />
-            <label> Monday </label>
+            <label>{translate("Monday")} </label>
             <br />
             <input name="tuesday" type="checkbox" onChange={props.handleChange} />
-            <label> Tuesday </label>
+            <label>{translate("Tuesday")}</label>
             <br />
             <input name="wednesday" type="checkbox" onChange={props.handleChange} />
-            <label> Wednesday </label>
+            <label>{translate("Wednesday")}</label>
             <br />
             <input name="thursday" type="checkbox" onChange={props.handleChange} />
-            <label> Thursday </label>
+            <label>{translate("Thursday")}</label>
             <br />
             <input name="friday" type="checkbox" onChange={props.handleChange} />
-            <label> Friday </label>
+            <label>{translate("Friday")} </label>
             <br />
             <input name="saturday" type="checkbox" onChange={props.handleChange} />
-            <label> Saturday </label>
-            <br />
-            <button className="btn btn-success btn-block">Submit</button>
+            <label>{translate("Saturday")} </label>
+            <br />"
+            <button className="btn btn-success btn-block">{translate("Submit")}</button>
         </React.Fragment>
     );
 }
