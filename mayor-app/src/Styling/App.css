@@ -70,7 +70,7 @@ input{
   font-weight: 300;
   align-content: center;
   text-align: center;
-  background-color: #343a40;
+  background-color: #355503;
   padding-top: 30px;
   padding-bottom: 30px;
 }
@@ -139,15 +139,16 @@ input{
 
 
 .col-2 {
+  display: inline-block;
   padding-left: 20px;
   padding-bottom: 15px;
   
   width: min-content;
 }
 
-.assistanceimg {
-  padding-left: 150px;
-  padding-right: 150px;
+.Assistanceimg {
+  width: 90%;
+  height: 200px;
 }
 
 .row{

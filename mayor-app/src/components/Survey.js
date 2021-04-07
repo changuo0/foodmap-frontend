@@ -12,7 +12,7 @@ class Survey extends React.Component {
         super(props)
         this.state = {
             currentStep: 1,
-            language: "",
+            language: this.getLanguage(window.location.pathname),
             householdProperties: {
                 olderThan60: false,
                 childrenUnder18: false,
@@ -39,6 +39,29 @@ class Survey extends React.Component {
                 SA: false,
                 SU: false,
             }
+        }
+    }
+
+
+    getLanguage(props){
+        
+        if (props.substring(props.length-2,props.length)=="es"){
+            return LOCALES.SPANISH;
+        }
+        if (props.substring(props.length-2,props.length)=="en"){
+            return LOCALES.ENGLISH;
+        }
+        if (props.substring(props.length-2,props.length)=="de"){
+            return LOCALES.GERMAN;
+        }
+        if (props.substring(props.length-2,props.length)=="fr"){
+            return LOCALES.FRENCH;
+        }
+        if (props.substring(props.length-2,props.length)=="vi"){
+            return LOCALES.VIETNAMESE;
+        }
+        if (props.substring(props.length-2,props.length)=="zh"){
+            return LOCALES.CHINESE;
         }
     }
 
@@ -101,39 +124,41 @@ class Survey extends React.Component {
 
     render() {
         return (
-            <I18nProvider locale={this.state.language}>
+            <I18nProvider locale={this.getLanguage(window.location.pathname)}>
                 <React.Fragment>
-                    <h1 className='subDisplay'>Find Food Survey</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <Step1
-                            currentStep={this.state.currentStep}
-                            handleChange={this.handleChange}
-                            language={this.state.language}
-                        />
-                        <Step2
-                            currentStep={this.state.currentStep}
-                            handleChange={this.handleChange}
-                            householdProperties={this.state.householdProperties}
-                        />
-                        <Step3
-                            currentStep={this.state.currentStep}
-                            handleChange={this.handleChange}
-                            desiredFoodType={this.state.desiredFoodType}
-                        />
-                        <Step4
-                            currentStep={this.state.currentStep}
-                            handleChange={this.handleChange}
-                            locationDetails={this.state.locationDetails}
-                        />
-                        <Step5
-                            currentStep={this.state.currentStep}
-                            handleChange={this.handleChange}
-                            weeklyAvailability={this.state.weeklyAvailability}
-                        />
-                        {this.previousButton()}
-                        {this.nextButton()}
+                    <div style={{marginLeft:"10px"}}>
+                        <h1 className='subDisplay'>Find Food Survey</h1>
+                        <form onSubmit={this.handleSubmit}>
+                            <Step1
+                                currentStep={this.state.currentStep}
+                                handleChange={this.handleChange}
+                                language={this.state.language}
+                            />
+                            <Step2
+                                currentStep={this.state.currentStep}
+                                handleChange={this.handleChange}
+                                householdProperties={this.state.householdProperties}
+                            />
+                            <Step3
+                                currentStep={this.state.currentStep}
+                                handleChange={this.handleChange}
+                                desiredFoodType={this.state.desiredFoodType}
+                            />
+                            <Step4
+                                currentStep={this.state.currentStep}
+                                handleChange={this.handleChange}
+                                locationDetails={this.state.locationDetails}
+                            />
+                            <Step5
+                                currentStep={this.state.currentStep}
+                                handleChange={this.handleChange}
+                                weeklyAvailability={this.state.weeklyAvailability}
+                            />
+                            {this.previousButton()}
+                            {this.nextButton()}
 
-                    </form>
+                        </form>
+                    </div>
                 </React.Fragment>
             </I18nProvider>
         );
@@ -148,12 +173,14 @@ function Step1(props) {
     }
     return(
         <div className="form-group">
-            <label htmlFor="languages">Please select a language: </label>
+            <label htmlFor="languages">{translate("Please Confirm Your Language")} </label>
             <select value = {props.language} onChange={props.handleChange}>
                 <option value={LOCALES.ENGLISH} >English</option>
                 <option value={LOCALES.SPANISH} selected="selected">Spanish</option>
                 <option value={LOCALES.GERMAN}>German</option>
                 <option value={LOCALES.FRENCH}>French</option>
+                <option value={LOCALES.VIETNAMESE}>Vietnamese</option>
+                <option value={LOCALES.CHINESE}>Mandarin</option>
             </select>
         </div>
     );
@@ -248,31 +275,31 @@ function Step4(props) {
                 name="oneMile"
                 type="radio"
                 onChange={props.handleChange} />
-            <label for="oneMile">{translate("1 mile")}</label>
+            <label for="oneMile">1 {translate("mile")}</label>
             <br />
             <input
                 name="threeMiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="threeMiles">{translate("3 miles")}</label>
+            <label htmlFor="threeMiles">3 {translate("miles")}</label>
             <br />
             <input
                 name="fiveMiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="fiveMiles">{translate("5 miles")} </label>
+            <label htmlFor="fiveMiles">5 {translate("miles")} </label>
             <br />
             <input
                 name="tenMiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="tenMiles">{translate("10 miles")} </label>
+            <label htmlFor="tenMiles">10 {translate("miles")} </label>
             <br />
             <input
                 name="twentymiles"
                 type="radio"
                 onChange={props.handleChange}/>
-            <label htmlFor="twentymiles">{translate("20 miles")} </label>
+            <label htmlFor="twentymiles">20 {translate("miles")} </label>
         </div>
     );
 }

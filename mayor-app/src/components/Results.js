@@ -18,14 +18,15 @@ function makeRequest(sheetOrCal,params,callback) {
 function makeDummyRequest(sheetOrCal,params,callback) {
   // sheetOrCal and params do nothing lol
   // calls the callback with sample data
-  callback([{"name":"510 Foundation","contact":"615-255-1289","notes":"","location":"510 Woodland St., Nashville, TN","zip":37206,"foodtype":"Soup Kitchen, Dinner","id":20},{"name":"Community Care Fellowship","contact":"615-227-1953","notes":"","location":"511 South 8th Street, Nashville, TN","zip":37206,"foodtype":"Soup Kitchen / Youth Program, Breakfast/Lunch","id":21},{"name":"Catholic Charities / Loaves & Fishes","contact":"615-256-7256","notes":"","location":"508 Main Street, Nashville, TN","zip":37206,"foodtype":"Soup Kitchen, Breakfast/Lunch","id":22}])
+  callback([ { "name": "bla bla bla resource 1", "description": "...", "contact": "website/contact info goes here", "type": "Food Pantry", "address": "2301 vanderbilt place nashville tn", "zip": 37240, "latitude": 36.146, "longitude": -86.8050, "deliveryServices": true }, { "name": "...", "description": "...", "contact": "...", "type": "Ready to Eat", "address": "...", "zip": 12345, "latitude": 34.56, "longitude": -24.283, "deliveryServices": false }])
 }
 
 class Results extends React.Component {
     constructor() {
       super()
       this.setUpGeoCode();
-      this.state = { xmlReturn: ["no data yet..."] }
+      this.state = { xmlReturn:[ { "name": "bla bla bla resource 1", "description": "...", "contact": "website/contact info goes here", "type": "Food Pantry", "address": "2301 vanderbilt place nashville tn", "zip": 37240, "latitude": 36.1486, "longitude": -86.8050, "deliveryServices": true }, { "name": "...", "description": "...", "contact": "...", "type": "Ready to Eat", "address": "...", "zip": 12345, "latitude": 0, "longitude":0, "deliveryServices": false }] }
+      
       makeDummyRequest("sheet",{"zip":"37206"}, (x) => this.setState({xmlReturn:x}))
       
     }
@@ -41,9 +42,10 @@ class Results extends React.Component {
                         zoom={15}
                         style={mapStyles}
                         
-                        initialCenter={{ lat: 36.14417, lng: -86.80971}}
+                        //initialCenter={{ lat: "36.1486", lng:  "-86.8050"}}
+                        initialCenter={{ lat: this.state.xmlReturn[0].latitude, lng: this.state.xmlReturn[0].longitude}}
                     >  
-                    <Marker position={{ lat: 36.14417, lng: -86.80971}} />
+                    <Marker position={{ lat: this.state.xmlReturn[0].latitude, lng: this.state.xmlReturn[0].longitude}} />
                     </Map>
                 </div>
             </div>

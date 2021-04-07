@@ -29,5 +29,6 @@ export default {
         "Thursday":"Thứ năm",
         "Friday":"Thứ sáu",
         "Saturday":"ngày thứ bảy",
+        "Please Confirm Your Language":"Hãy Confirm Your Language",
     }
 }

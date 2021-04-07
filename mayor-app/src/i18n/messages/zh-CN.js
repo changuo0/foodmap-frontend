@@ -29,5 +29,6 @@ export default {
         "Thursday":"周四",
         "Friday":"星期五",
         "Saturday":"周六",
+        "Please Confirm Your Language":"请确认您的语言"
     }
 }

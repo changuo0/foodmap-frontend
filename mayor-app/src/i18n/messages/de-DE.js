@@ -2,6 +2,7 @@ import {LOCALES } from "../locales";
 
 export default {
     [LOCALES.GERMAN]: {
+        "Please Confirm Your Language":"Bitte bestätigen Sie Ihre Sprache",
         "Hello":"Hallo",
         "Find Food":"Essen finden",
         "Take this survey to find food near you":"Nehmen Sie diese Umfrage Lebensmittel in Ihrer Nähe zu finden",

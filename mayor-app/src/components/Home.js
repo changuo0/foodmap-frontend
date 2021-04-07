@@ -51,41 +51,25 @@ const Home = () => {
                             </div>    
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:es")}>Spanish</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:es")}>Spanish</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:vi")}>Vietnamese</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:vi")}>Vietnamese</button>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:zh")}>Mandarin</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:zh")}>Mandarin</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey:de")}>German</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:de")}>German</button>
                                 </div>
                             </div>
                         </div>  
                     </div>
                 </div>
                 
-                {/*Third Main section*/}
-                {/*
-                <div className = "subDisplay">
-                    Nashville Food Pantry Calendar
-                    <div className = "row">
-                        <h4>Monday</h4>
-                        <h4>Tuesday</h4>
-                        <h4>Wednesday</h4>
-                        <h4>Thursday</h4>
-                        <h4>Friday</h4>
-                        <h4>Saturday</h4>
-                        <h4>Sunday</h4>
-                    </div>
-                    <h2>IMPORT CALENDAR</h2>
-                    <button className="ButtonPrimary" On onClick={() => openUrl("INSERT LINK")}>Get Calendar »</button>
-                </div>
-                */}
+               
 
                 {/* Assistance Programs section */}
                 <div className = "subDisplay">
@@ -93,21 +77,23 @@ const Home = () => {
                     <div className="row">
                         <div className = "col-2">
                             <h2>SNAP</h2>
-                            <img classname="assistanceimg" src={snap} />
+                            <img className="Assistanceimg" src={snap} />
                             <button className="ButtonPrimary" On onClick={() => openUrl("https://faonlineapp.dhs.tn.gov/")}>Apply Here »</button>
                         </div>
                         <div className = "col-2">
                             <h2>WIC</h2>
-                            <img classname="assistanceimg" src={wic}/>
+                            <img className="Assistanceimg" src={wic}/>
                             <button className="ButtonPrimary" On onClick={() => openUrl("https://www.tn.gov/health/health-program-areas/fhw/wic.html")}>Learn How to Apply »</button>
                         </div>
                         <div className = "col-2">
                             <h2>Nutrition Info</h2>
-                            <img classname="assistanceimg" src={nutrition}/>
+                            <img className="Assistanceimg" src={nutrition}/>
                             <button className="ButtonPrimary" On onClick={() => openUrl("/")}>Learn More »</button>
                         </div>
                     </div>
                 </div>
+
+
 
                     {/* Bottom Display */}
                 <div className = "bottomDisplay">
