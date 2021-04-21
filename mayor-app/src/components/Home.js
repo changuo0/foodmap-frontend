@@ -13,6 +13,13 @@ const Home = () => {
     function openUrl(url){
         window.open(url);
     }
+
+    function handleScrollToStats(){
+        window.scrollTo({
+            top: 400,
+            behavior: 'smooth' 
+        })
+   }
     
     return (
         <I18nProvider locale={LOCALES.ENGLISH}>
@@ -26,7 +33,7 @@ const Home = () => {
                             {translate('Find Food')}
                         </h1>
                         <p className="Title-P">Take this survey to find food near you</p>
-                        <button className="ButtonPrimary" On onClick={() => openUrl("/Survey")}>Take Survey »</button>
+                        <button className="ButtonPrimary" On onClick={handleScrollToStats}>Take Survey »</button>
                     </div>
                     
                 </div>
@@ -38,7 +45,7 @@ const Home = () => {
                             <img className="Skylineimg" src={skyline} />
                         </div>
                         <div className = "col-2">
-                            <h2 className="FindFood">Find Food</h2>
+                            <h1 className="FindFood">Find Food</h1>
                             <p className="FindFood">Take this survey to find food near you.</p>
                             <p className="FindFood">Please select your lnguage below</p>
                             <div className="row">
@@ -97,8 +104,6 @@ const Home = () => {
 
                     {/* Bottom Display */}
                 <div className = "bottomDisplay">
-                    <h2 style={{color: "white"}}> Donator? Sign in Below </h2>
-                    <button className="ButtonSecondary" On onClick={() => openUrl("/Login")}>Sign In</button>
                     
                 </div>
 

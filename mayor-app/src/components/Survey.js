@@ -71,6 +71,7 @@ class Survey extends React.Component {
         this.setState({
             [name]: value
         })
+        
     }
 
     handleSubmit = event => {
@@ -132,24 +133,19 @@ class Survey extends React.Component {
                             <Step1
                                 currentStep={this.state.currentStep}
                                 handleChange={this.handleChange}
-                                language={this.state.language}
+                                householdProperties={this.state.householdProperties}
                             />
                             <Step2
                                 currentStep={this.state.currentStep}
                                 handleChange={this.handleChange}
-                                householdProperties={this.state.householdProperties}
+                                desiredFoodType={this.state.desiredFoodType}
                             />
                             <Step3
                                 currentStep={this.state.currentStep}
                                 handleChange={this.handleChange}
-                                desiredFoodType={this.state.desiredFoodType}
-                            />
-                            <Step4
-                                currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
                                 locationDetails={this.state.locationDetails}
                             />
-                            <Step5
+                            <Step4
                                 currentStep={this.state.currentStep}
                                 handleChange={this.handleChange}
                                 weeklyAvailability={this.state.weeklyAvailability}
@@ -169,25 +165,6 @@ class Survey extends React.Component {
 
 function Step1(props) {
     if (props.currentStep !== 1) {
-        return null
-    }
-    return(
-        <div className="form-group">
-            <label htmlFor="languages">{translate("Please Confirm Your Language")} </label>
-            <select value = {props.language} onChange={props.handleChange}>
-                <option value={LOCALES.ENGLISH} >English</option>
-                <option value={LOCALES.SPANISH} selected="selected">Spanish</option>
-                <option value={LOCALES.GERMAN}>German</option>
-                <option value={LOCALES.FRENCH}>French</option>
-                <option value={LOCALES.VIETNAMESE}>Vietnamese</option>
-                <option value={LOCALES.CHINESE}>Mandarin</option>
-            </select>
-        </div>
-    );
-}
-
-function Step2(props) {
-    if (props.currentStep !== 2) {
         return null
     }
     return(
@@ -227,8 +204,8 @@ function Step2(props) {
     );
 }
 
-function Step3(props) {
-    if (props.currentStep !== 3) {
+function Step2(props) {
+    if (props.currentStep !== 2) {
         return null
     }
     return(
@@ -256,8 +233,8 @@ function Step3(props) {
     );
 }
 
-function Step4(props) {
-    if (props.currentStep !== 4) {
+function Step3(props) {
+    if (props.currentStep !== 3) {
         return null
     }
     return(
@@ -304,8 +281,8 @@ function Step4(props) {
     );
 }
 
-function Step5(props) {
-    if (props.currentStep !== 5) {
+function Step4(props) {
+    if (props.currentStep !== 4) {
         return null
     }
     return(
