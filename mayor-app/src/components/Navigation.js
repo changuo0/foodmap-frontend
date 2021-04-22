@@ -43,7 +43,7 @@ function NavBarExpanded(){
                     drop={"down"}
                     title={"Get Involved ▼"}
                     >
-                    <Dropdown.Item className="Dropdown-Item" eventKey="1">Submit A Resource</Dropdown.Item>
+                    <Dropdown.Item className="Dropdown-Item" eventKey="1" href={"/Form"}>Submit A Resource</Dropdown.Item>
                     <Dropdown.Item className="Dropdown-Item" eventKey="2">Donate Space</Dropdown.Item>
                     <Dropdown.Item className="Dropdown-Item" eventKey="3">Volunteer</Dropdown.Item>
                 </DropdownButton>
