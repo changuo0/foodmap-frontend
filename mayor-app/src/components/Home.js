@@ -29,9 +29,7 @@ const Home = () => {
                 <div className="Container">
                     <img className="Communityimg" src={community} />
                     <div className="TextBox">
-                        <h1 className="display-3">
-                            {translate('Find Food')}
-                        </h1>
+                        <h1 className="display-3">Nashville Food Bank</h1>
                         <p className="Title-P">Take this survey to find food near you</p>
                         <button className="ButtonPrimary" On onClick={handleScrollToStats}>Take Survey »</button>
                     </div>
@@ -45,6 +43,7 @@ const Home = () => {
                             <img className="Skylineimg" src={skyline} />
                         </div>
                         <div className = "col-2">
+                            
                             <h1 className="FindFood">Find Food</h1>
                             <p className="FindFood">Take this survey to find food near you.</p>
                             <p className="FindFood">Please select your lnguage below</p>
@@ -58,7 +57,7 @@ const Home = () => {
                             </div>    
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:es")}>Spanish</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:es")}>Español</button>
                                 </div>
                                 <div className = "col-2">
                                 <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:vi")}>Vietnamese</button>

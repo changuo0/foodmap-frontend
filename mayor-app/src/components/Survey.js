@@ -4,6 +4,7 @@ import { I18nProvider, LOCALES } from '../i18n';
 import translate from "../i18n/translate";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import { event } from 'jquery';
 
 class Survey extends React.Component {
     
@@ -23,7 +24,6 @@ class Survey extends React.Component {
             desiredFoodType:{
                 freshFood: false,
                 nonperishables: false,
-                hotMeals: false,
                 prepackagedMeals: false,
             },
             locationDetails:{
@@ -66,21 +66,102 @@ class Survey extends React.Component {
     }
 
     //will need to look into how this is handled for non text input types
-    handleChange = event => {
-        const {name, value} = event.target
-        this.setState({
-            [name]: value
-        })
+    handleTextFieldChange = event => {
+        this.setState(prevState => ({
+            locationDetails: {
+                ...prevState.locationDetails,
+                [event.target.name]: event.target.value
+            }
+        }))
         
     }
 
+    handleCheckBoxChange = event => {
+        if (this.state.currentStep == 1){
+            this.setState(prevState => ({
+                householdProperties: {
+                    ...prevState.householdProperties,
+                    [event.target.name]: !this.state.householdProperties[event.target.name] 
+                }
+            }))
+        }
+        if (this.state.currentStep == 2){
+            this.setState(prevState => ({
+                desiredFoodType: {
+                    ...prevState.desiredFoodType,
+                    [event.target.name]: !this.state.desiredFoodType[event.target.name] 
+                }
+            }))
+        }
+
+        if (this.state.currentStep == 4){
+            this.setState(prevState => ({
+                
+                weeklyAvailability: {
+                    ...prevState.weeklyAvailability,
+                    [event.target.name]: !this.state.weeklyAvailability[event.target.name] 
+                }
+            }))
+        }
+    };
+
+    handleRadioChange = event => {
+        this.setState(prevState => ({
+            locationDetails: {
+                ...prevState.locationDetails,
+                [event.target.name]: event.target.value
+            }
+        }))
+    }
+
+
     handleSubmit = event => {
         event.preventDefault()
+        const {householdProperties, desiredFoodType, locationDetails} = this.state
         window.open("/Results")
     }
 
     _next = () => {
         let currentStep = this.state.currentStep
+        if (currentStep == 1){
+            alert(`Survey details: \n 
+            HouseHold Properties: \n
+            ${this.state.householdProperties.olderThan60} \n
+            ${this.state.householdProperties.childrenUnder18} \n
+            ${this.state.householdProperties.disability} \n
+            ${this.state.householdProperties.singleParent} \n
+            ${this.state.householdProperties.infantUnder2} \n
+            `)
+        }
+        if (currentStep == 2){
+            alert(`Survey details: \n 
+            Desired Food: \n
+            ${this.state.desiredFoodType.nonperishables} \n
+            ${this.state.desiredFoodType.freshFood} \n
+            ${this.state.desiredFoodType.prepackagedMeals} \n
+            `)
+        }
+        if (currentStep == 3){
+            alert(`Survey details: \n 
+            Location Details: \n
+            ${this.state.locationDetails.zipCode} \n
+            ${this.state.locationDetails.locationRadius} \n
+            `)
+        }
+        if (currentStep == 4){
+            alert(`Survey details: \n 
+            Weekly Availability: \n
+            ${this.state.weeklyAvailability.M} \n
+            ${this.state.weeklyAvailability.T} \n
+            ${this.state.weeklyAvailability.W} \n
+            ${this.state.weeklyAvailability.R} \n
+            ${this.state.weeklyAvailability.F} \n
+            ${this.state.weeklyAvailability.SA} \n
+            ${this.state.weeklyAvailability.SU} \n
+            `)
+        }
+
+
         currentStep = currentStep >= 4? 5: currentStep + 1
         this.setState({
             currentStep: currentStep
@@ -132,25 +213,27 @@ class Survey extends React.Component {
                         <form onSubmit={this.handleSubmit}>
                             <Step1
                                 currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
+                                handleChange={this.handleCheckBoxChange}
                                 householdProperties={this.state.householdProperties}
                             />
                             <Step2
                                 currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
+                                handleChange={this.handleCheckBoxChange}
                                 desiredFoodType={this.state.desiredFoodType}
                             />
                             <Step3
                                 currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
+                                handleRadioChange={this.handleRadioChange}
+                                handleTextFieldChange={this.handleTextFieldChange}
+
                                 locationDetails={this.state.locationDetails}
                             />
                             <Step4
                                 currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
+                                handleChange={this.handleCheckBoxChange}
                                 weeklyAvailability={this.state.weeklyAvailability}
                             />
-                            {this.previousButton()}
+                            {/* {this.previousButton()}  Comment Out for now. Going back interferes with state manipulation*/}
                             {this.nextButton()}
 
                         </form>
@@ -218,7 +301,7 @@ function Step2(props) {
             <label>{translate("Non-Perishables")}</label>
             <br />
             <input
-                name="freshfood"
+                name="freshFood"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Fresh Food")}</label>
@@ -242,40 +325,45 @@ function Step3(props) {
             <h5>{translate("Please enter your location details to help us search for the closest opportunities")}</h5>
             <h5>Zip:</h5>
             <input
-                name="zip"
+                name="zipCode"
                 type="text"
                 value={props.locationDetails.zipCode}
-                onChange={props.handleChange} />
+                onChange={props.handleTextFieldChange} />
 
             <h5>{translate("I am looking for food within ...")} </h5>
             <input
-                name="oneMile"
+                name="locationRadius"
                 type="radio"
-                onChange={props.handleChange} />
+                value="1"
+                onChange={props.handleRadioChange} />
             <label for="oneMile">1 {translate("mile")}</label>
             <br />
             <input
-                name="threeMiles"
+                name="locationRadius"
+                value={3}
                 type="radio"
-                onChange={props.handleChange}/>
+                onChange={props.handleRadioChange} />
             <label htmlFor="threeMiles">3 {translate("miles")}</label>
             <br />
             <input
-                name="fiveMiles"
+                name="locationRadius"
+                value={5}
                 type="radio"
-                onChange={props.handleChange}/>
+                onChange={props.handleRadioChange} />
             <label htmlFor="fiveMiles">5 {translate("miles")} </label>
             <br />
             <input
-                name="tenMiles"
+                name="locationRadius"
+                value={10}
                 type="radio"
-                onChange={props.handleChange}/>
+                onChange={props.handleRadioChange} />
             <label htmlFor="tenMiles">10 {translate("miles")} </label>
             <br />
             <input
-                name="twentymiles"
+                name="locationRadius"
+                value={20}
                 type="radio"
-                onChange={props.handleChange}/>
+                onChange={props.handleRadioChange} />
             <label htmlFor="twentymiles">20 {translate("miles")} </label>
         </div>
     );
@@ -288,25 +376,25 @@ function Step4(props) {
     return(
         <React.Fragment>
             <h5>{translate("I am available on these days for pickup:")} </h5>
-            <input name="sunday" type="checkbox" onChange={props.handleChange} />
+            <input name="SU" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Sunday")}</label>
             <br />
-            <input name="monday" type="checkbox" onChange={props.handleChange} />
+            <input name="M" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Monday")} </label>
             <br />
-            <input name="tuesday" type="checkbox" onChange={props.handleChange} />
+            <input name="T" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Tuesday")}</label>
             <br />
-            <input name="wednesday" type="checkbox" onChange={props.handleChange} />
+            <input name="W" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Wednesday")}</label>
             <br />
-            <input name="thursday" type="checkbox" onChange={props.handleChange} />
+            <input name="R" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Thursday")}</label>
             <br />
-            <input name="friday" type="checkbox" onChange={props.handleChange} />
+            <input name="F" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Friday")} </label>
             <br />
-            <input name="saturday" type="checkbox" onChange={props.handleChange} />
+            <input name="SA" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Saturday")} </label>
             <br />"
             <button className="btn btn-success btn-block">{translate("Submit")}</button>

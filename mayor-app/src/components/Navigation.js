@@ -51,9 +51,6 @@ function NavBarExpanded(){
 
                 
             </ul>
-            
-            <input className="SearchBar" type="text" placeholder="Search"/>
-            <button className="SearchBarButton">Search</button>
         </div>
     );
 }
@@ -86,10 +83,7 @@ function NavBarCondensed(){
                     <Dropdown.Item className="Dropdown-Item" eventKey="3">Volunteer</Dropdown.Item>
                 </DropdownButton>
                 
-            </ul>
-            <input className="SearchBar" type="text" placeholder="Search"/>
-            <button className="SearchBarButton">Search</button>
-                   
+            </ul>                   
         </div>
     );
 }

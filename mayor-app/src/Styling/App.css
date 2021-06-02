@@ -36,7 +36,7 @@ input{
 }
 
 .display-3 {
-  text-align: center;
+  text-align: left;
   font-size: 6.5rem;
   font-weight: 50;
   font-stretch: expanded;
@@ -46,8 +46,10 @@ input{
 
 .TextBox{
   position: absolute;
-  top: 30%;
-  left: 50%;
+  top: 40%;
+  bottom: 0%;
+  left: 15%;
+  right: 60.89%;
   transform: translate(-50%, -50%);
 }
 
