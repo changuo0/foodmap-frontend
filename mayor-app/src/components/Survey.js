@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../Styling/App.css';
 import { I18nProvider, LOCALES } from '../i18n';
 import translate from "../i18n/translate";
+import { Route , withRouter} from 'react-router-dom';
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { event } from 'jquery';
@@ -118,6 +119,11 @@ class Survey extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         const {householdProperties, desiredFoodType, locationDetails} = this.state
+        localStorage.setItem('householdProperties', JSON.stringify(this.state.householdProperties));
+        localStorage.setItem('desiredFoodType', JSON.stringify(this.state.desiredFoodType));
+        localStorage.setItem('locationDetails', JSON.stringify(this.state.locationDetails));
+        localStorage.setItem('weeklyAvailability', JSON.stringify(this.state.weeklyAvailability));
+        
         window.open("/Results")
     }
 
@@ -192,7 +198,7 @@ class Survey extends React.Component {
 
     nextButton(){
         let currentStep = this.state.currentStep;
-        if(currentStep < 5){
+        if(currentStep < 4){
             return (
                 <button
                     className="btn btn-primary float-right"
@@ -400,6 +406,10 @@ function Step4(props) {
             <button className="btn btn-success btn-block">{translate("Submit")}</button>
         </React.Fragment>
     );
+}
+
+function name(params) {
+    
 }
 
 export default Survey;
