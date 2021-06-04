@@ -52,7 +52,7 @@ const Home = () => {
                                     <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:en")}>English</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:fr")}>French</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:ar")}>ةيبرعلا</button>
                                 </div>
                             </div>    
                             <div className="row">
@@ -60,15 +60,15 @@ const Home = () => {
                                     <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:es")}>Español</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:vi")}>Vietnamese</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:ku")}>Kurmancî</button>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className = "col-2">
-                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:zh")}>Mandarin</button>
+                                    <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:so")}>Soomaali</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:de")}>German</button>
+                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:my")}>မြန်မာဘာသာ</button>
                                 </div>
                             </div>
                         </div>  

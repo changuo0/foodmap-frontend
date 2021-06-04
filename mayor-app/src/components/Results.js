@@ -74,7 +74,6 @@ class Results extends React.Component {
 
     
     render() {
-        
         return (
             <div>
                 {/*First Main Section  */}

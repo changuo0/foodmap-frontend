@@ -52,17 +52,17 @@ class Survey extends React.Component {
         if (props.substring(props.length-2,props.length)=="en"){
             return LOCALES.ENGLISH;
         }
-        if (props.substring(props.length-2,props.length)=="de"){
-            return LOCALES.GERMAN;
+        if (props.substring(props.length-2,props.length)=="my"){
+            return LOCALES.BURMESE;
         }
-        if (props.substring(props.length-2,props.length)=="fr"){
-            return LOCALES.FRENCH;
+        if (props.substring(props.length-2,props.length)=="so"){
+            return LOCALES.SOMALI;
         }
-        if (props.substring(props.length-2,props.length)=="vi"){
-            return LOCALES.VIETNAMESE;
+        if (props.substring(props.length-2,props.length)=="ku"){
+            return LOCALES.KURDISH;
         }
-        if (props.substring(props.length-2,props.length)=="zh"){
-            return LOCALES.CHINESE;
+        if (props.substring(props.length-2,props.length)=="ar"){
+            return LOCALES.ARABIC;
         }
     }
 

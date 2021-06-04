@@ -1,8 +1,8 @@
 export const LOCALES = {
-    ENGLISH: "en-us",
-    FRENCH: "fr-ca",
-    GERMAN: 'de-de',
-    VIETNAMESE: 'vi-VI',
-    CHINESE: 'zh-CN',
+    ENGLISH: "en-US",
+    BURMESE: "my-MM",
+    KURDISH: 'ku-TR',
+    ARABIC: 'ar-AE',
+    SOMALI: 'so-SO',
     SPANISH: 'es-ES',
 };
