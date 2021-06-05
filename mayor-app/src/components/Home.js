@@ -52,7 +52,7 @@ const Home = () => {
                                     <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:en")}>English</button>
                                 </div>
                                 <div className = "col-2">
-                                <button className="ButtonSecondary" On onClick={() => openUrl("/Survey/:ar")}>ةيبرعلا</button>
+                                <button className="ButtonSecondary" >ةيبرعلا</button>
                                 </div>
                             </div>    
                             <div className="row">
@@ -101,10 +101,7 @@ const Home = () => {
 
 
 
-                    {/* Bottom Display */}
-                <div className = "bottomDisplay">
-                    
-                </div>
+               
 
                 
             </div>

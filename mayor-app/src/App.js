@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Form from './components/Form';
+import About from './components/About';
 
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
@@ -39,6 +40,7 @@ class App extends Component{
                 <Navigation windowWidth={windowWidth}/>
                 <Switch>
                     <Route path = "/" component = {Home} exact/>
+                    <Route path = "/About" component = {About}/>
                     <Route path = "/Survey" component = {Survey}/>
                     <Route path = "/Results" component = {Results}/>
                     <Route path = "/Login" component = {Login}/>

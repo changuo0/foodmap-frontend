@@ -24,7 +24,7 @@ function NavBarExpanded(){
     return (
         <div className="NavBar-Expanded">
             <ul className="NavBar-Nav mr-auto" >
-                <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
+                <a className="NavBarItem" href={"/About"}>About</a>
                 <DropdownButton
                     key={"down"}
                     variant="NavBarItem-Dropdown" 
@@ -59,7 +59,7 @@ function NavBarCondensed(){
     return (
         <div className="NavBar-Condensed">
             <ul className="NavBar-Nav mr-auto" >
-                <a className="NavBarItem" href={"INSERT LINK LATER"}>About</a>
+            <a className="NavBarItem" href={"/About"}>About</a>
                 <DropdownButton
                     key={"down"}
                     variant="NavBarItem-Dropdown" 
