@@ -15,6 +15,9 @@ class Survey extends React.Component {
         this.state = {
             currentStep: 1,
             language: this.getLanguage(window.location.pathname),
+            householdProperty: [],
+            foodType: [],
+            weekAvailability: [],
             householdProperties: {
                 olderThan60: false,
                 childrenUnder18: false,
@@ -79,30 +82,38 @@ class Survey extends React.Component {
 
     handleCheckBoxChange = event => {
         if (this.state.currentStep == 1){
-            this.setState(prevState => ({
-                householdProperties: {
-                    ...prevState.householdProperties,
-                    [event.target.name]: !this.state.householdProperties[event.target.name] 
-                }
-            }))
+            this.setState({
+                householdProperty: [...this.state.householdProperty, event.target.name]
+            })
+            // this.setState(prevState => ({
+            //     householdProperties: {
+            //         ...prevState.householdProperties,
+            //         [event.target.name]: !this.state.householdProperties[event.target.name] 
+            //     }
+            // }))
         }
         if (this.state.currentStep == 2){
-            this.setState(prevState => ({
-                desiredFoodType: {
-                    ...prevState.desiredFoodType,
-                    [event.target.name]: !this.state.desiredFoodType[event.target.name] 
-                }
-            }))
+            this.setState({
+                foodType: [...this.state.foodType, event.target.name]
+            })
+            // this.setState(prevState => ({
+            //     desiredFoodType: {
+            //         ...prevState.desiredFoodType,
+            //         [event.target.name]: !this.state.desiredFoodType[event.target.name] 
+            //     }
+            // }))
         }
 
         if (this.state.currentStep == 4){
-            this.setState(prevState => ({
-                
-                weeklyAvailability: {
-                    ...prevState.weeklyAvailability,
-                    [event.target.name]: !this.state.weeklyAvailability[event.target.name] 
-                }
-            }))
+            this.setState({
+                weekAvailability: [...this.state.weekAvailability, event.target.name]
+            })
+            // this.setState(prevState => ({
+            //     weeklyAvailability: {
+            //         ...prevState.weeklyAvailability,
+            //         [event.target.name]: !this.state.weeklyAvailability[event.target.name] 
+            //     }
+            // }))
         }
     };
 
@@ -123,6 +134,9 @@ class Survey extends React.Component {
         localStorage.setItem('desiredFoodType', JSON.stringify(this.state.desiredFoodType));
         localStorage.setItem('locationDetails', JSON.stringify(this.state.locationDetails));
         localStorage.setItem('weeklyAvailability', JSON.stringify(this.state.weeklyAvailability));
+        localStorage.setItem('householdProperty', JSON.stringify(this.state.householdProperty));
+        localStorage.setItem('foodType', JSON.stringify(this.state.foodType));
+        localStorage.setItem('weekAvailability', JSON.stringify(this.state.weekAvailability));
         
         window.open("/Results")
     }
@@ -131,20 +145,14 @@ class Survey extends React.Component {
         let currentStep = this.state.currentStep
         if (currentStep == 1){
             alert(`Survey details: \n 
-            HouseHold Properties: \n
-            ${this.state.householdProperties.olderThan60} \n
-            ${this.state.householdProperties.childrenUnder18} \n
-            ${this.state.householdProperties.disability} \n
-            ${this.state.householdProperties.singleParent} \n
-            ${this.state.householdProperties.infantUnder2} \n
+            HouseHold Property: \n
+            ${this.state.householdProperty} \n
             `)
         }
         if (currentStep == 2){
             alert(`Survey details: \n 
             Desired Food: \n
-            ${this.state.desiredFoodType.nonperishables} \n
-            ${this.state.desiredFoodType.freshFood} \n
-            ${this.state.desiredFoodType.prepackagedMeals} \n
+            ${this.state.foodType} \n
             `)
         }
         if (currentStep == 3){
@@ -157,13 +165,7 @@ class Survey extends React.Component {
         if (currentStep == 4){
             alert(`Survey details: \n 
             Weekly Availability: \n
-            ${this.state.weeklyAvailability.M} \n
-            ${this.state.weeklyAvailability.T} \n
-            ${this.state.weeklyAvailability.W} \n
-            ${this.state.weeklyAvailability.R} \n
-            ${this.state.weeklyAvailability.F} \n
-            ${this.state.weeklyAvailability.SA} \n
-            ${this.state.weeklyAvailability.SU} \n
+            ${this.state.weekAvailability.M} \n
             `)
         }
 
@@ -260,31 +262,31 @@ function Step1(props) {
         <div className="form-group">
             <h5>{translate("Check all that apply to you or your household")}</h5>
             <input
-                name="olderThan60"
+                name="60 years or older"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("60 years or older")}</label>
             <br />
             <input
-                name="childrenUnder18"
+                name="Children 18 or younger"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Children 18 or younger")}</label>
             <br />
             <input
-                name="disability"
+                name="Disability that makes it difficult to leave the house"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Disability that makes it difficult to leave the house")}</label>
             <br />
             <input
-                name="singleParent"
+                name="Single Parent"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Single Parent")}</label>
             <br />
             <input
-                name="infantUnder2"
+                name="Infant 2 years or younger"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Infant 2 years or younger")}</label>
@@ -301,19 +303,19 @@ function Step2(props) {
         <div className="form-group">
             <h5>{translate("I am looking for...")}</h5>
             <input
-                name="nonperishables"
+                name="Non-Perishables"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Non-Perishables")}</label>
             <br />
             <input
-                name="freshFood"
+                name="Fresh Food"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Fresh Food")}</label>
             <br />
             <input
-                name="prepackagedMeals"
+                name="Pre-Packaged Meals"
                 type="checkbox"
                 onChange={props.handleChange} />
             <label>{translate("Pre-Packaged Meals")}</label>
@@ -382,25 +384,25 @@ function Step4(props) {
     return(
         <React.Fragment>
             <h5>{translate("I am available on these days for pickup:")} </h5>
-            <input name="SU" type="checkbox" onChange={props.handleChange} />
+            <input name="Sunday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Sunday")}</label>
             <br />
-            <input name="M" type="checkbox" onChange={props.handleChange} />
+            <input name="Monday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Monday")} </label>
             <br />
-            <input name="T" type="checkbox" onChange={props.handleChange} />
+            <input name="Tuesday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Tuesday")}</label>
             <br />
-            <input name="W" type="checkbox" onChange={props.handleChange} />
+            <input name="Wednesday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Wednesday")}</label>
             <br />
-            <input name="R" type="checkbox" onChange={props.handleChange} />
+            <input name="Thursday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Thursday")}</label>
             <br />
-            <input name="F" type="checkbox" onChange={props.handleChange} />
+            <input name="Friday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Friday")} </label>
             <br />
-            <input name="SA" type="checkbox" onChange={props.handleChange} />
+            <input name="Saturday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Saturday")} </label>
             <br />"
             <button className="btn btn-success btn-block">{translate("Submit")}</button>

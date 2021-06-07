@@ -18,6 +18,10 @@ class Results extends React.Component {
         selectedPlace: {},
         showingInfoWindow: false,
 
+        householdProperty: [],
+        foodType: [],
+        weekAvailability: [],
+
         householdProperties: {
             olderThan60: false,
             childrenUnder18: false,
@@ -48,6 +52,7 @@ class Results extends React.Component {
       
     }
 
+
     onMarkerClick = (props, marker) =>
       this.setState({
         activeMarker: marker,
@@ -76,6 +81,10 @@ class Results extends React.Component {
           callback: googleData => {
             this.setState(prevState => ({
               resourceData: googleData,
+              validRecources: this.filterResources(googleData, ),
+              householdProperty: JSON.parse(localStorage.getItem('householdProperty')),
+              foodType: JSON.parse(localStorage.getItem('foodType')),
+              weekAvailability: JSON.parse(localStorage.getItem('weekAvailability')),
               householdProperties: JSON.parse(localStorage.getItem('householdProperties')),
               desiredFoodType: JSON.parse(localStorage.getItem('desiredFoodType')),
               locationDetails: JSON.parse(localStorage.getItem('locationDetails')),
@@ -83,69 +92,81 @@ class Results extends React.Component {
               hasLoaded: true
             }))
             console.log('google sheet data --->', googleData)
+            
           },
           simpleSheet: true
         })
         
+        
     }
-
-    findLocations(){
-
-    }
-
     
     render() {
-      const {resourceData} = this.state
+      const {resourceData, validRecources} = this.state
       if (!this.state.hasLoaded){
-        return <div />
-      }
-
-
         return (
-            <div>
-                {/*First Main Section  */}
-                <div className="Container">
-                    <h1 className="display-3">Results</h1>
-		                
-                    <Map
-                        google={this.props.google}
-                        zoom={15}
-                        style={mapStyles}
-                        
-                        
-                        initialCenter={{lat: resourceData[0].Lat, lng: resourceData[0].Lng}}
-                    >  
-                    {
-                        resourceData.map((resource) => (
-                            <Marker
-                              name={resource.Name}
-                              description={resource.Description}
-                              address={resource.Address}
-                              email={resource.Email}
-                              resourceType={resource.Type}
-                              foodType={resource.FoodType}
-                              position={{lat: resource.Lat, lng: resource.Lng}} 
-                              onClick={this.onMarkerClick}
-                            />
-                        ))
-                    }
-                    <InfoWindow
-                      marker={this.state.activeMarker}
-                      onClose={this.onInfoWindowClose}
-                      visible={this.state.showingInfoWindow}
-                    >
-                      <div>
-                        <h4>{this.state.selectedPlace.name}</h4>
-                      </div>
-                    </InfoWindow>
-
+          <div>
+            <h1 className="LoadingHeader">Loading</h1>
+          </div>
+        )
+      }
+      
+      
+      
+      return (
+          <div>
+              {/*First Main Section  */}
+              <div className="Container">
+                  <h1 className="display-3">Results</h1>
+                  
+                  <Map
+                      google={this.props.google}
+                      zoom={15}
+                      style={mapStyles}
                       
+                      
+                      initialCenter={{lat: resourceData[0].Lat, lng: resourceData[0].Lng}}
+                  >  
+                  {
+                      
+                      resourceData.map((resource) => (
+                          <Marker
+                            name={resource.Name}
+                            description={resource.Description}
+                            address={resource.Address + ", " + resource.ZipCode}
+                            email={resource.Email}
+                            contactInfo={resource.Contact_Info}
+                            resourceType={resource.Type}
+                            foodType={resource.Food_Type}
+                            position={{lat: resource.Lat, lng: resource.Lng}} 
+                            weekAvailability={resource.Available_Pickup_Days}
+                            onClick={this.onMarkerClick}
+                          />
+                      ))
+                  }
+                  <InfoWindow
+                    marker={this.state.activeMarker}
+                    onClose={this.onInfoWindowClose}
+                    visible={this.state.showingInfoWindow}
+                  >
+                    <div>
+                      <h1>{this.state.selectedPlace.name}</h1>
+                      <h3>{this.state.selectedPlace.address}</h3>
+                      <p>{this.state.selectedPlace.description}</p>
+                      <p>Food Type: {this.state.selectedPlace.foodType}</p>
+                      <p>Available: {this.state.selectedPlace.weekAvailability}</p>
+                      <h4>Contact Info:</h4>
+                      <p>{this.state.selectedPlace.email}</p>
+                      <p>{this.state.selectedPlace.contactInfo}</p>
+                    </div>
+                  </InfoWindow>
+
                     
-                    </Map>
-                </div>
-                <p>{this.state.householdProperties.olderThan60}</p>
-            </div>
-        );
+                  
+                  </Map>
+              </div>
+              <p>{this.state.householdProperties.olderThan60}</p>
+          </div>
+      );
     }
 
 
@@ -155,18 +176,20 @@ class Results extends React.Component {
     Geocode.setLanguage("en");
   }
 
-  addMarkers(){
-    const {resourceData} = this.state
-    return (
-      <div> {
-          resourceData.map(resource => {
+  filterResources(arr1){
+    //Filter resources here
+    return arr1;
+   }
 
 
-
-          })
-        }
-      </div>
-    )
+  hasMatch(arr1, arr2){
+    console.log(arr1 + "vs" + arr2);
+    for (var i =0; i < arr1.length; i++){
+      if (arr2.includes(arr1[i])){
+        return true
+      }
+    }
+    return false
   }
 }
 const mapStyles = {
