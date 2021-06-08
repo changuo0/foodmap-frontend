@@ -79,30 +79,8 @@ class Results extends React.Component {
         Tabletop.init({
           key: '1XrmXfbWx_oWC0sqOIdfZzPFIMinkiiijyUAKy2FUXw4',
           callback: googleData => {
-
-            for (var i = 0; i < this.state.googleData.length; i++){
-              this.setState(prevState => ({
-                resourceData: {
-                    ...prevState.resourceData,
-                    resource: {
-                      address: googleData[i]["Address"],
-                      ZipCode: googleData[i]["Zip Code"],
-                      email: googleData[i]["Email Address"],
-                      type: googleData[i]["Type"],
-                      name: googleData[i]["Food Resource Name"],
-                      description: googleData[i]["Description / Other Info"],
-                      contactInfo: googleData[i]["Website / Contact Info"],
-                      foodType: googleData[i]["Food Type"],
-                      weekAvailability: googleData["Available Pickup Days"],
-                      position: this.getLatLng(googleData[i]["Address"])
-                    }
-                }
-            }))
-          }
-
             this.setState(prevState => ({
               resourceData: googleData,
-              
               validRecources: this.filterResources(googleData, ),
               householdProperty: JSON.parse(localStorage.getItem('householdProperty')),
               foodType: JSON.parse(localStorage.getItem('foodType')),
@@ -113,9 +91,8 @@ class Results extends React.Component {
               weeklyAvailability: JSON.parse(localStorage.getItem('weeklyAvailability')),
               hasLoaded: true
             }))
-            console.log('google sheet data --->', googleData);
-           
-
+            console.log('google sheet data --->', googleData)
+            
           },
           simpleSheet: true
         })
@@ -133,9 +110,6 @@ class Results extends React.Component {
         )
       }
       
-
-      
-       
       
       
       return (
@@ -149,14 +123,25 @@ class Results extends React.Component {
                       zoom={15}
                       style={mapStyles}
                       
-                      initialCenter={this.getLatLng(resourceData[0].Address)}
-                >  
+                      
+                      initialCenter={{lat: resourceData[0].Lat, lng: resourceData[0].Lng}}
+                  >  
                   {
                       
                       resourceData.map((resource) => (
                         
                           <Marker
-                            position= {resource.position}
+                            name={resource["Food Resource Name"]}
+                            description={resource["Description / Other Info"]}
+                            address={resource.Address + ", " + resource["Zip Code"]}
+                            email={resource["Email Address"]}
+                            contactInfo={resource["Website / Contact Info"]}
+                            resourceType={resource["Type"]}
+                            foodType={resource["Food Type"]}
+                            //position={{lat: resource.Lat, lng: resource.Lng}} 
+                            position= {this.getLatLng(resource.Address)}
+                            weekAvailability={resource["Available Pickup Days"]}
+                            householdInfo={resource["Check the following that apply to your resource:"]}
                             onClick={this.onMarkerClick}
                           />
                       ))
@@ -175,7 +160,6 @@ class Results extends React.Component {
                       <h4>Contact Info:</h4>
                       <p>{this.state.selectedPlace.email}</p>
                       <p>{this.state.selectedPlace.contactInfo}</p>
-                      <p>Pos: {this.state.selectedPlace.position}</p>
                     </div>
                   </InfoWindow>
 
@@ -199,16 +183,15 @@ class Results extends React.Component {
     Geocode.fromAddress(addy).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
-        const coords = {lat: 10, lng: 10};
+        const coords = {lat: lat, lng: lng};
         console.log("COORDS:" + coords.lat + "," + coords.lng)
-        return coords
+        return {lat: coords.lat, lng: coords.lng}
       },
       (error) => {
         console.error(error);
       }
     );
   }
-  
 
   filterResources(arr1){
     //Filter resources here
