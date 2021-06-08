@@ -79,8 +79,30 @@ class Results extends React.Component {
         Tabletop.init({
           key: '1XrmXfbWx_oWC0sqOIdfZzPFIMinkiiijyUAKy2FUXw4',
           callback: googleData => {
+
+            for (var i = 0; i < this.state.googleData.length; i++){
+              this.setState(prevState => ({
+                resourceData: {
+                    ...prevState.resourceData,
+                    resource: {
+                      address: googleData[i]["Address"],
+                      ZipCode: googleData[i]["Zip Code"],
+                      email: googleData[i]["Email Address"],
+                      type: googleData[i]["Type"],
+                      name: googleData[i]["Food Resource Name"],
+                      description: googleData[i]["Description / Other Info"],
+                      contactInfo: googleData[i]["Website / Contact Info"],
+                      foodType: googleData[i]["Food Type"],
+                      weekAvailability: googleData["Available Pickup Days"],
+                      position: this.getLatLng(googleData[i]["Address"])
+                    }
+                }
+            }))
+          }
+
             this.setState(prevState => ({
               resourceData: googleData,
+              
               validRecources: this.filterResources(googleData, ),
               householdProperty: JSON.parse(localStorage.getItem('householdProperty')),
               foodType: JSON.parse(localStorage.getItem('foodType')),
@@ -91,8 +113,9 @@ class Results extends React.Component {
               weeklyAvailability: JSON.parse(localStorage.getItem('weeklyAvailability')),
               hasLoaded: true
             }))
-            console.log('google sheet data --->', googleData)
-            
+            console.log('google sheet data --->', googleData);
+           
+
           },
           simpleSheet: true
         })
@@ -110,6 +133,9 @@ class Results extends React.Component {
         )
       }
       
+
+      
+       
       
       
       return (
@@ -123,22 +149,14 @@ class Results extends React.Component {
                       zoom={15}
                       style={mapStyles}
                       
-                      
-                      initialCenter={{lat: resourceData[0].Lat, lng: resourceData[0].Lng}}
-                  >  
+                      initialCenter={this.getLatLng(resourceData[0].Address)}
+                >  
                   {
                       
                       resourceData.map((resource) => (
+                        
                           <Marker
-                            name={resource.Name}
-                            description={resource.Description}
-                            address={resource.Address + ", " + resource.ZipCode}
-                            email={resource.Email}
-                            contactInfo={resource.Contact_Info}
-                            resourceType={resource.Type}
-                            foodType={resource.Food_Type}
-                            position={{lat: resource.Lat, lng: resource.Lng}} 
-                            weekAvailability={resource.Available_Pickup_Days}
+                            position= {resource.position}
                             onClick={this.onMarkerClick}
                           />
                       ))
@@ -157,6 +175,7 @@ class Results extends React.Component {
                       <h4>Contact Info:</h4>
                       <p>{this.state.selectedPlace.email}</p>
                       <p>{this.state.selectedPlace.contactInfo}</p>
+                      <p>Pos: {this.state.selectedPlace.position}</p>
                     </div>
                   </InfoWindow>
 
@@ -175,6 +194,21 @@ class Results extends React.Component {
     Geocode.setApiKey("AIzaSyAZNY02jemZ0JuL9QauPxeggJB7EDShTo8");
     Geocode.setLanguage("en");
   }
+
+  getLatLng(addy){
+    Geocode.fromAddress(addy).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        const coords = {lat: 10, lng: 10};
+        console.log("COORDS:" + coords.lat + "," + coords.lng)
+        return coords
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
 
   filterResources(arr1){
     //Filter resources here
