@@ -143,7 +143,7 @@ class Survey extends React.Component {
 
     _next = () => {
         let currentStep = this.state.currentStep
-        if (currentStep == 1){
+        /*if (currentStep == 1){
             alert(`Survey details: \n 
             HouseHold Property: \n
             ${this.state.householdProperty} \n
@@ -167,7 +167,7 @@ class Survey extends React.Component {
             Weekly Availability: \n
             ${this.state.weekAvailability.M} \n
             `)
-        }
+        }*/
 
 
         currentStep = currentStep >= 4? 5: currentStep + 1
@@ -404,7 +404,7 @@ function Step4(props) {
             <br />
             <input name="Saturday" type="checkbox" onChange={props.handleChange} />
             <label>{translate("Saturday")} </label>
-            <br />"
+            <br />
             <button className="btn btn-success btn-block">{translate("Submit")}</button>
         </React.Fragment>
     );
