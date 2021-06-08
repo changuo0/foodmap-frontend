@@ -163,7 +163,7 @@ class Results extends React.Component {
                             resourceType={resource["Type"]}
                             foodType={resource["Food Type"]}
                             //position={{lat: resource.Lat, lng: resource.Lng}} 
-                            position= {this.getLatLng(resource.Address)}
+                            position= {resource.position}
                             weekAvailability={resource["Available Pickup Days"]}
                             householdInfo={resource["Check the following that apply to your resource:"]}
                             onClick={this.onMarkerClick}
