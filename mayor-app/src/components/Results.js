@@ -79,31 +79,10 @@ class Results extends React.Component {
         Tabletop.init({
           key: '1XrmXfbWx_oWC0sqOIdfZzPFIMinkiiijyUAKy2FUXw4',
           callback: googleData => {
-
-            for (var i = 0; i < this.state.googleData.length; i++){
-              this.setState(prevState => ({
-                resourceData: {
-                    ...prevState.resourceData,
-                    resource: {
-                      address: googleData[i]["Address"],
-                      ZipCode: googleData[i]["Zip Code"],
-                      email: googleData[i]["Email Address"],
-                      type: googleData[i]["Type"],
-                      name: googleData[i]["Food Resource Name"],
-                      description: googleData[i]["Description / Other Info"],
-                      contactInfo: googleData[i]["Website / Contact Info"],
-                      foodType: googleData[i]["Food Type"],
-                      weekAvailability: googleData["Available Pickup Days"],
-                      position: this.getLatLng(googleData[i]["Address"])
-                    }
-                }
-            }))
-          }
-
             this.setState(prevState => ({
-              resourceData: googleData,
+              resourceData: [],
               
-              validRecources: this.filterResources(googleData, ),
+              validRecources: [],
               householdProperty: JSON.parse(localStorage.getItem('householdProperty')),
               foodType: JSON.parse(localStorage.getItem('foodType')),
               weekAvailability: JSON.parse(localStorage.getItem('weekAvailability')),
@@ -111,10 +90,10 @@ class Results extends React.Component {
               desiredFoodType: JSON.parse(localStorage.getItem('desiredFoodType')),
               locationDetails: JSON.parse(localStorage.getItem('locationDetails')),
               weeklyAvailability: JSON.parse(localStorage.getItem('weeklyAvailability')),
-              hasLoaded: true
             }))
             console.log('google sheet data --->', googleData);
-           
+            for (var i = 0; i < googleData.length; i++)
+                this.getLatLng(googleData[i]);
 
           },
           simpleSheet: true
@@ -122,10 +101,34 @@ class Results extends React.Component {
         
         
     }
+
+    setUpGeoCode(){
+      Geocode.setApiKey("AIzaSyAZNY02jemZ0JuL9QauPxeggJB7EDShTo8");
+      Geocode.setLanguage("en");
+    }
+
+    getLatLng(addy){
+      Geocode.fromAddress(addy.Address).then(
+        (response) => {
+          const { lat, lng } = response.results[0].geometry.location;
+          const coords = {lat: lat, lng: lng};
+          this.setState(prevState => ({
+            ...prevState,
+            resourceData: prevState.resourceData.concat({
+                ...addy,
+                position: coords
+            })
+          }));
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
     
     render() {
       const {resourceData, validRecources} = this.state
-      if (!this.state.hasLoaded){
+      if (resourceData.length == 0){
         return (
           <div>
             <h1 className="LoadingHeader">Loading</h1>
@@ -149,10 +152,9 @@ class Results extends React.Component {
                       zoom={15}
                       style={mapStyles}
                       
-                      initialCenter={this.getLatLng(resourceData[0].Address)}
+                      initialCenter={resourceData[0].position}
                 >  
                   {
-                      
                       resourceData.map((resource) => (
                         
                           <Marker
@@ -190,24 +192,6 @@ class Results extends React.Component {
 
 
 
-  setUpGeoCode(){
-    Geocode.setApiKey("AIzaSyAZNY02jemZ0JuL9QauPxeggJB7EDShTo8");
-    Geocode.setLanguage("en");
-  }
-
-  getLatLng(addy){
-    Geocode.fromAddress(addy).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        const coords = {lat: 10, lng: 10};
-        console.log("COORDS:" + coords.lat + "," + coords.lng)
-        return coords
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
   
 
   filterResources(arr1){
