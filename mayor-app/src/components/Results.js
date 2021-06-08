@@ -136,9 +136,6 @@ class Results extends React.Component {
         )
       }
       
-
-      
-       
       
       
       return (
@@ -158,7 +155,17 @@ class Results extends React.Component {
                       resourceData.map((resource) => (
                         
                           <Marker
-                            position= {resource.position}
+                            name={resource["Food Resource Name"]}
+                            description={resource["Description / Other Info"]}
+                            address={resource.Address + ", " + resource["Zip Code"]}
+                            email={resource["Email Address"]}
+                            contactInfo={resource["Website / Contact Info"]}
+                            resourceType={resource["Type"]}
+                            foodType={resource["Food Type"]}
+                            //position={{lat: resource.Lat, lng: resource.Lng}} 
+                            position= {this.getLatLng(resource.Address)}
+                            weekAvailability={resource["Available Pickup Days"]}
+                            householdInfo={resource["Check the following that apply to your resource:"]}
                             onClick={this.onMarkerClick}
                           />
                       ))
@@ -177,7 +184,6 @@ class Results extends React.Component {
                       <h4>Contact Info:</h4>
                       <p>{this.state.selectedPlace.email}</p>
                       <p>{this.state.selectedPlace.contactInfo}</p>
-                      <p>Pos: {this.state.selectedPlace.position}</p>
                     </div>
                   </InfoWindow>
 
@@ -192,7 +198,6 @@ class Results extends React.Component {
 
 
 
-  
 
   filterResources(arr1){
     //Filter resources here
