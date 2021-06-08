@@ -79,6 +79,7 @@ class Results extends React.Component {
         Tabletop.init({
           key: '1XrmXfbWx_oWC0sqOIdfZzPFIMinkiiijyUAKy2FUXw4',
           callback: googleData => {
+            const locDetails = JSON.parse(localStorage.getItem('locationDetails'));
             this.setState(prevState => ({
               resourceData: [],
               
@@ -88,12 +89,13 @@ class Results extends React.Component {
               weekAvailability: JSON.parse(localStorage.getItem('weekAvailability')),
               householdProperties: JSON.parse(localStorage.getItem('householdProperties')),
               desiredFoodType: JSON.parse(localStorage.getItem('desiredFoodType')),
-              locationDetails: JSON.parse(localStorage.getItem('locationDetails')),
+              locationDetails: locDetails,
               weeklyAvailability: JSON.parse(localStorage.getItem('weeklyAvailability')),
             }))
             console.log('google sheet data --->', googleData);
             for (var i = 0; i < googleData.length; i++)
                 this.getLatLng(googleData[i]);
+            this.getLatLngForMyZipcode(locDetails.zipCode);
 
           },
           simpleSheet: true
@@ -125,16 +127,33 @@ class Results extends React.Component {
         }
       );
     }
+
+    getLatLngForMyZipcode(myZip){
+      Geocode.fromAddress(myZip).then(
+        (response) => {
+          const { lat, lng } = response.results[0].geometry.location;
+          const coords = {lat: lat, lng: lng};
+          this.setState(prevState => ({
+            ...prevState,
+            myPosition: coords
+          }));
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
     
     render() {
-      const {resourceData, validRecources} = this.state
-      if (resourceData.length == 0){
+      const {resourceData, validRecources, myPosition} = this.state
+      if (resourceData.length == 0 || myPosition == undefined){
         return (
           <div>
             <h1 className="LoadingHeader">Loading</h1>
           </div>
         )
       }
+      console.log(myPosition)
       
       
       
