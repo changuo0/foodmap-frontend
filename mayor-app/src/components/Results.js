@@ -12,7 +12,6 @@ class Results extends React.Component {
       this.state = {
 
         resourceData: [],
-        validRecources: [],
         hasLoaded: false,
         activeMarker: {},
         selectedPlace: {},
@@ -83,7 +82,6 @@ class Results extends React.Component {
             this.setState(prevState => ({
               resourceData: [],
               
-              validRecources: [],
               householdProperty: JSON.parse(localStorage.getItem('householdProperty')),
               foodType: JSON.parse(localStorage.getItem('foodType')),
               weekAvailability: JSON.parse(localStorage.getItem('weekAvailability')),
@@ -93,9 +91,7 @@ class Results extends React.Component {
               weeklyAvailability: JSON.parse(localStorage.getItem('weeklyAvailability')),
             }))
             console.log('google sheet data --->', googleData);
-            for (var i = 0; i < googleData.length; i++)
-                this.getLatLng(googleData[i]);
-            this.getLatLngForMyZipcode(locDetails.zipCode);
+            this.getLatLngs(locDetails.zipCode,googleData);
 
           },
           simpleSheet: true
@@ -114,38 +110,57 @@ class Results extends React.Component {
         (response) => {
           const { lat, lng } = response.results[0].geometry.location;
           const coords = {lat: lat, lng: lng};
-          this.setState(prevState => ({
-            ...prevState,
-            resourceData: prevState.resourceData.concat({
+          if (this.isValid(addy,coords))
+            this.setState(prevState => ({
+              ...prevState,
+              resourceData: prevState.resourceData.concat({
                 ...addy,
                 position: coords
-            })
-          }));
+              })
+            }));
         },
         (error) => {
-          console.error(error);
+          // console.error(error);
         }
       );
     }
 
-    getLatLngForMyZipcode(myZip){
-      Geocode.fromAddress(myZip).then(
-        (response) => {
-          const { lat, lng } = response.results[0].geometry.location;
-          const coords = {lat: lat, lng: lng};
-          this.setState(prevState => ({
-            ...prevState,
-            myPosition: coords
-          }));
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    isValid(addy,coords) {
+      var retVal = true;
+      if (this.state.myPosition != undefined) {
+        retVal = retVal && (coords.lat-this.state.myPosition.lat < 1);
+        retVal = retVal && (coords.lng-this.state.myPosition.lng < 1);
+      }
+      retVal = retVal && (addy["Approve?"] == "yes" || addy["Approve?"] == "Yes");
+      console.log(addy);
+      return retVal;
+    }
+
+    getLatLngs(myZip,googleData){
+      if (myZip != undefined && myZip != "")
+        Geocode.fromAddress(myZip).then(
+          (response) => {
+            const { lat, lng } = response.results[0].geometry.location;
+            const coords = {lat: lat, lng: lng};
+            this.setState(prevState => ({
+              ...prevState,
+              myPosition: coords
+            }));
+            for (var i = 0; i < googleData.length; i++)
+                this.getLatLng(googleData[i]);
+          },
+          (error) => {
+            for (var i = 0; i < googleData.length; i++)
+              this.getLatLng(googleData[i]);
+          }
+        );
+      else
+        for (var i = 0; i < googleData.length; i++)
+            this.getLatLng(googleData[i]);
     }
     
     render() {
-      const {resourceData, validRecources, myPosition} = this.state
+      const {resourceData, myPosition} = this.state
       if (resourceData.length == 0 || myPosition == undefined){
         return (
           <div>
@@ -216,12 +231,6 @@ class Results extends React.Component {
     }
 
 
-
-
-  filterResources(arr1){
-    //Filter resources here
-    return arr1;
-   }
 
 
   hasMatch(arr1, arr2){
